@@ -1,1 +1,1 @@
-## Instagram clone (ver.React)
+## Instagram Clone (ver.React)

@@ -2,7 +2,7 @@ import React from 'react';
 // components
 import NavBar from './NavBar';
 // CSS
-import { GlobalStyle } from '../style/Layout';
+import styled, { GlobalStyle } from '../style/Layout';
 
 const Layout = ({ children }) => {
   return (
@@ -12,7 +12,6 @@ const Layout = ({ children }) => {
         <NavBar />
       </header>
       <main>{children}</main>
-      <footer>footer</footer>
     </>
   );
 };

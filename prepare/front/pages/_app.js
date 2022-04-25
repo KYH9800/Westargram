@@ -1,14 +1,15 @@
 import React from 'react';
-import Layout from '../components/layout';
-// CSS
-import '../style/global.css';
+import Head from 'next/head';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Head>
+        <meta charSet="utf-8" />
+        <title>Westagram</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Component {...pageProps} />
     </>
   );
 };

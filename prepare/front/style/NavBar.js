@@ -42,7 +42,7 @@ export const Wrapper = styled.div`
     vertical-align: middle;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 777px) {
     #search-input {
       display: none;
     }

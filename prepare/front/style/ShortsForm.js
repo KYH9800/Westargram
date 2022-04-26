@@ -25,6 +25,12 @@ export const ShortsFormWrapper = styled.section`
     width: 30px;
     height: 30px;
   }
+
+  @media (max-width: 640px) {
+    #shorts-box {
+      margin-top: 0px;
+    }
+  }
 `;
 
 //* react-slick customizing

@@ -36,5 +36,10 @@ export const MainWrapper = styled.div`
     #user-info-wrapper {
       display: none;
     }
+
+    #main-wrapper {
+      margin: 0 auto;
+      display: table;
+    }
   }
 `;

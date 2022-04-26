@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 // ShortsForm.js
 export const ShortsFormWrapper = styled.section`
   #shorts-box {
+    background-color: #fff;
     float: left;
     margin-top: 22px;
     border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
@@ -26,7 +27,7 @@ export const ShortsFormWrapper = styled.section`
   }
 `;
 
-//* react-slick
+//* react-slick customizing
 export const StyledSlider = styled(Slider)`
   height: 90%; //슬라이드 컨테이너 영역
 

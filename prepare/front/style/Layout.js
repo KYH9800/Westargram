@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  background-color: #fafafa;
+  
   header {
     z-index: 100;
     border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);

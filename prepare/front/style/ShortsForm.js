@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 // ShortsForm.js
 export const ShortsFormWrapper = styled.section`
   #shorts-box {
+    float: left;
     margin-top: 22px;
     border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     width: 613.99px;
@@ -29,23 +30,22 @@ export const ShortsFormWrapper = styled.section`
 export const StyledSlider = styled(Slider)`
   height: 90%; //슬라이드 컨테이너 영역
 
+  .slick-track {
+    margin: 0;
+  }
+
+  //슬라이드 스크린
   .slick-list {
-    //슬라이드 스크린
-    width: 100%;
-    height: 100%;
+    width: 613px;
+    height: 110px;
     margin: 0 auto;
     overflow-x: hidden;
+    vertical-align: middle;
   }
 
+  //슬라이더 컨텐츠
   .slick-slide div {
-    //슬라이더  컨텐츠
-    /* cursor: pointer; */
-  }
-
-  .slick-dots {
-    //슬라이드의 위치
-    bottom: 20px;
-    margin-top: 200px;
+    /* background-color: yellow; */
   }
 
   .slick-track {
@@ -54,6 +54,53 @@ export const StyledSlider = styled(Slider)`
 
   .slick-slide.slick-active.slick-current {
     display: block;
+  }
+
+  // 슬라이더 버튼
+  .slick-prev,
+  .slick-next {
+    box-shadow: 0 0px 7px rgb(0 0 0 / 29%);
+    border-radius: 50%;
+    background-color: #3838384d;
+    line-height: 0%;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    /* background: transparent; */
+
+    margin: 0 33px;
+    z-index: 1;
+  }
+
+  // 슬라이더 버튼:before
+  .slick-prev:before,
+  .slick-next:before {
+    position: absolute;
+    top: 0px;
+    right: -2.6px;
+    font-size: 30px;
+  }
+
+  .slick-prev.slick-disabled:before,
+  .slick-next.slick-disabled:before,
+  .slick-arrow.slick-next.slick-disabled,
+  .slick-arrow.slick-prev.slick-disabled {
+    display: none !important; // important: 강제 적용
   }
 `;
 
@@ -89,3 +136,14 @@ export const ShortsAvatarWrapper = styled.div`
     color: #9e9e9e;
   }
 `;
+
+/* 터치패트를 통한 스크롤
+.slick-list {
+  overflow: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; // IE and Edge
+  scrollbar-width: none; // Firefox
+}
+.slick-list::-webkit-scrollbar {
+  display: none; // 스크롤바 숨기기
+} */

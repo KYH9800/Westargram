@@ -4,31 +4,40 @@ import { ShortsFormWrapper, StyledSlider } from '../style/ShortsForm';
 // components
 import ShortsAvatar from './ShortsAvatar';
 
-const ShortsForm = () => {
+const ShortsForm = (props) => {
   const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 7,
+    slidesToScroll: 7,
+    // nextArrow: true,
+    // prevArrow: true,
   };
 
   return (
     <ShortsFormWrapper>
       <div id="shorts-box">
-        <button className="slick-btn">{'<'}</button>
-        <li className="li" />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <ShortsAvatar />
-        <StyledSlider {...settings}></StyledSlider>
-        <button className="slick-btn">{'>'}</button>
+        <StyledSlider {...settings}>
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+          <ShortsAvatar />
+        </StyledSlider>
       </div>
     </ShortsFormWrapper>
   );

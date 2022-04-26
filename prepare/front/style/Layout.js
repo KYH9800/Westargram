@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   header {
-    z-index: 1;
+    z-index: 100;
     border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     background-color: #fff;
     position: fixed;

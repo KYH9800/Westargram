@@ -12,7 +12,7 @@ const Home = () => {
         <div id="home-wrapper">
           <div id="main-wrapper">
             <section id="section">
-              <div class="wrap-vertical">
+              <div className="shortsForm-section">
                 <ShortsForm />
               </div>
               <div className="post-card">

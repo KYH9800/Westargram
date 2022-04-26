@@ -78,9 +78,10 @@ export const StyledSlider = styled(Slider)`
 
     cursor: pointer;
 
-    color: transparent;
     border: none;
     outline: none;
+    color: transparent;
+    /* color: -internal-light-dark(black, white); */
     /* background: transparent; */
 
     margin: 0 33px;
@@ -90,10 +91,12 @@ export const StyledSlider = styled(Slider)`
   // 슬라이더 버튼:before
   .slick-prev:before,
   .slick-next:before {
+    /* color: white; */
     position: absolute;
     top: 0px;
     right: -2.6px;
     font-size: 30px;
+    opacity: 1; // hover 효과 죽이기
   }
 
   .slick-prev.slick-disabled:before,
@@ -146,4 +149,12 @@ export const ShortsAvatarWrapper = styled.div`
 }
 .slick-list::-webkit-scrollbar {
   display: none; // 스크롤바 숨기기
+} */
+
+/* 슬라이더 버튼 hover, focus
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  TODO HERE: hover && focus
 } */

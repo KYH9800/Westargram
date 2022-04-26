@@ -1,5 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
+// antd
+import 'antd/dist/antd.css';
+// react-slick
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const MyApp = ({ Component, pageProps }) => {
   return (

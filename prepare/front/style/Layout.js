@@ -10,15 +10,18 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   header {
-  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+    z-index: 1;
+    border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
   }
 
   main {
+    max-width: 935px;
+    margin: 0 auto;
     margin-top: 61px;
   }
 

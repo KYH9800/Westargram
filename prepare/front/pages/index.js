@@ -3,16 +3,17 @@ import React from 'react';
 import { MainWrapper } from '../style/index';
 // components
 import Layout from '../components/layout';
+import ShortsForm from '../components/ShortsForm';
 
 const Home = () => {
   return (
     <Layout>
       <MainWrapper>
         <div id="home-wrapper">
-          <div id="main">
+          <div id="main-wrapper">
             <section id="section">
               <div class="wrap-vertical">
-                <span>쇼츠</span>
+                <ShortsForm />
               </div>
               <div className="post-card">
                 <div className="post-form">Hello, Instagram</div>

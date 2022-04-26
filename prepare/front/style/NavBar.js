@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     margin: 0 auto;
     max-width: 990px;
   }
+
   #navWrapper > nav {
     padding: 0 20px;
     align-items: center;
@@ -13,6 +14,7 @@ export const Wrapper = styled.div`
     height: 60px;
     justify-content: space-between;
   }
+
   #main-logo {
     position: relative;
     margin-top: 7px;
@@ -20,6 +22,7 @@ export const Wrapper = styled.div`
     flex: 0.65 0 auto;
     vertical-align: middle;
   }
+
   #main-logo .logo-img {
     position: absolute;
     top: -27px;
@@ -28,6 +31,7 @@ export const Wrapper = styled.div`
     max-width: 135px;
     margin-top: 4px;
   }
+
   #search-input {
     display: inline-flex;
     align-items: center;

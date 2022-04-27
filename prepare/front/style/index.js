@@ -9,10 +9,6 @@ export const MainWrapper = styled.div`
     display: flex;
   }
 
-  #section .shortsForm-section {
-    display: inline;
-  } //! 이거 지워도 무관 (필요에 따라, 확인)
-
   #user-info-wrapper {
     margin-top: 22px;
     // 고정하기 위한 box size 설정
@@ -43,3 +39,13 @@ export const MainWrapper = styled.div`
     }
   }
 `;
+
+/*
+#section.shortsForm-section {
+    display: block;
+  } //! 이거 지워도 무관 (필요에 따라, 확인)
+
+  #section.post-card {
+    display: block;
+  }
+*/

@@ -17,6 +17,7 @@ const ShortsForm = (props) => {
 
   return (
     <ShortsFormWrapper>
+      <div id="shorts-empty-box"></div>
       <div id="shorts-box">
         <StyledSlider {...settings}>
           <ShortsAvatar />

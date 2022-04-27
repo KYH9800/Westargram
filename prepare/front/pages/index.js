@@ -4,6 +4,7 @@ import { MainWrapper } from '../style/index';
 // components
 import Layout from '../components/layout';
 import ShortsForm from '../components/ShortsForm';
+import PostCard from '../components/PostCard';
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
                 <ShortsForm />
               </div>
               <div className="post-card">
-                <div className="post-form">Hello, Instagram</div>
+                <PostCard />
               </div>
             </section>
             <div id="user-info-wrapper">

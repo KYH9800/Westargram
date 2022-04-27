@@ -3,14 +3,24 @@ import Slider from 'react-slick';
 
 // ShortsForm.js
 export const ShortsFormWrapper = styled.section`
+  #shorts-empty-box {
+    height: 22px;
+  }
+
+  @media (max-width: 640px) {
+    #shorts-empty-box {
+      display: none;
+    }
+  }
+
   #shorts-box {
     background-color: #fff;
     float: left;
-    margin-top: 22px;
+    /* margin-top: 22px; */
     border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     width: 613.99px;
     border-radius: 5px;
-    display: inline-flex;
+    /* display: inline-flex; */
     /* overflow: auto;
     white-space: nowrap; */
   }

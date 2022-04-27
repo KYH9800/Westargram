@@ -3,4 +3,4 @@
 
 구현중입니다...
 
-<img width="1426" alt="image" src="https://user-images.githubusercontent.com/61128538/165351757-7280d8aa-330b-4df3-8546-c22646f9749a.png">
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/61128538/165455532-265e6881-cfbb-47f1-9af5-ac679bbdc566.png">

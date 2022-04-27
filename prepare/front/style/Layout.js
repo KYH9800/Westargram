@@ -25,6 +25,7 @@ body {
     max-width: 935px;
     margin: 0 auto;
     margin-top: 61px;
+    padding-bottom: 50px;
   }
 
   .blind {

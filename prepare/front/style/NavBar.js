@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   }
 
   #navWrapper > nav {
-    padding: 0 20px;
+    padding: 0 26px;
     align-items: center;
     display: flex;
     height: 60px;
@@ -87,21 +87,25 @@ export const Wrapper = styled.div`
 
   #avatar {
     cursor: pointer;
+    margin-left: 10px;
+    margin-top: 1px;
+    align-items: center;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
   }
 
   #icon-button svg {
     margin: 0 12px;
   }
 
+  // img copy 방지
   #icon-button .user-img {
-    width: 24px;
-    margin-left: 10px;
-    border-radius: 50%;
     user-select: none;
-    // img copy 방지
     pointer-events: none;
   }
 
+  //! <--- [User 모달 창] --->
   #box-point {
     position: absolute;
     top: 36px;
@@ -166,5 +170,5 @@ export const Wrapper = styled.div`
 
   #user-list .list-keyword {
     vertical-align: middle;
-  }
+  } //! <--- [User 모달 창] --->
 `;

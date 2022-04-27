@@ -188,8 +188,9 @@ const NavBar = () => {
             <h4 className="blind">User</h4>
             <Avatar
               id="avatar"
-              src={<img className="user-img" src="/images/KakaoTalk_Photo_2022-02-15-23-02-00.png" />}
+              src={<img className="user-img" src="/images/self.png" />}
               onClick={onToggleClick}
+              size="small"
             />
             {toggle ? (
               <>

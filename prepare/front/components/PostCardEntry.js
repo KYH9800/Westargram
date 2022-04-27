@@ -1,19 +1,34 @@
 import React from 'react';
 // CSS
 import { PostCardEntryWrapper } from '../style/PostCard';
+// antd
+import { EllipsisOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 
 const PostCardEntry = () => {
   return (
     <PostCardEntryWrapper>
       <div id="post-box">
         <div id="post-header-wrapper">
-          <div className="user-icon">User</div>
-          <div className="userId">kyh0506_2</div>
-          <div className="menu-bar">menu-bar</div>
+          <div className="header-left">
+            <div className="user-icon">
+              <a>
+                <Avatar id="avatar" src={<img className="user-img" src="/images/self.png" />} />
+              </a>
+            </div>
+            <div className="userId">
+              <span>clean_0828</span>
+            </div>
+          </div>
+          <div className="header-right">
+            <div className="menu-bar">
+              <EllipsisOutlined />
+            </div>
+          </div>
         </div>
 
         <div id="post-img-wrapper">
-          <img className="post-img" src="" alt="게시글 이미지" />
+          <img className="post-img" src="/images/my-picture.png" alt="게시글 이미지" />
         </div>
 
         <div id="post-content-wrapper">

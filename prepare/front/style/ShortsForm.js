@@ -18,8 +18,8 @@ export const ShortsFormWrapper = styled.section`
     float: left;
     /* margin-top: 22px; */
     border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    border-radius: 3px;
     width: 613.99px;
-    border-radius: 5px;
     /* display: inline-flex; */
     /* overflow: auto;
     white-space: nowrap; */
@@ -133,7 +133,7 @@ export const ShortsAvatarWrapper = styled.div`
   }
 
   .user-avatar p {
-    padding: 5px 0;
+    padding: 2px 0;
     margin: 0;
     font-size: 12px;
   }
@@ -143,7 +143,7 @@ export const ShortsAvatarWrapper = styled.div`
     cursor: pointer;
     width: 60px;
     height: 60px;
-    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    border: 3px solid rgba(var(--b6a, 219, 219, 219), 1);
   }
 
   .ant-image-img {

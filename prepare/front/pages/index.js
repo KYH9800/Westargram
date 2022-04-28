@@ -5,6 +5,7 @@ import { MainWrapper } from '../style/index';
 import Layout from '../components/layout';
 import ShortsForm from '../components/ShortsForm';
 import PostCard from '../components/PostCard';
+import UserInfo from '../components/UserInfo';
 
 const Home = () => {
   return (
@@ -21,7 +22,9 @@ const Home = () => {
               </div>
             </section>
             <div id="user-info-wrapper">
-              <div className="user-info">User Info</div>
+              <div className="user-info">
+                <UserInfo />
+              </div>
             </div>
           </div>
         </div>

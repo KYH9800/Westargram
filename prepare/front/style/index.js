@@ -22,10 +22,7 @@ export const MainWrapper = styled.div`
 
   #user-info-wrapper .user-info {
     position: fixed;
-    // 1~3번: 임시적으로 만든 CSS 이거 지워도 됨
-    border: 1px solid black; // 1
-    width: 293px; // 2
-    height: 346px; // 3
+    // border: 1px solid wheat;
   }
 
   @media (max-width: 1000px) {

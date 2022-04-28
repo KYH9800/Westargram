@@ -40,10 +40,14 @@ export const PostCardEntryWrapper = styled.div`
   #post-header-wrapper .header-left .user-icon {
     margin-right: 7px;
     user-select: none;
+  }
+
+  #avatar .user-img {
     pointer-events: none;
   }
 
   #post-header-wrapper .header-left .userId {
+    user-select: none;
     margin: 0 7px;
     padding-top: 6px;
     width: 485px;

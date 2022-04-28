@@ -8,17 +8,9 @@ const PostCard = () => {
   return (
     <PostCardWrapper>
       <div id="post-box-empty"></div>
-      <div id="post-card-wrapper">
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-        <PostCardEntry />
-      </div>
+      <PostCardEntry />
+      <PostCardEntry />
+      <PostCardEntry />
     </PostCardWrapper>
   );
 };

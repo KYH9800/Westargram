@@ -1,6 +1,6 @@
 ## Westagram (with.React / Next.js)
 
-##### Instagram을 흉내낸 SNS 서비스 [빌드중...]
+> ##### Instagram을 흉내낸 SNS 서비스 [빌드중...]
 
 #### 1. 첫화면 완성(반응형)
 ![image](https://user-images.githubusercontent.com/61128538/165771464-0e604cd1-ad7f-471c-bae5-1df241ea7c86.png)

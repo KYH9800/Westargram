@@ -11,6 +11,10 @@ const PostCard = () => {
       <PostCardEntry />
       <PostCardEntry />
       <PostCardEntry />
+      <PostCardEntry />
+      <PostCardEntry />
+      <PostCardEntry />
+      <PostCardEntry />
     </PostCardWrapper>
   );
 };

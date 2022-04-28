@@ -25,39 +25,41 @@ const NavBar = () => {
               </a>
             </Link>
           </div>
-          <form id="search-input">
-            <h3 className="blind">검색창</h3>
-            <span id="search-icon">
-              <svg
-                aria-label="검색"
-                className="_8-yf5 "
-                color="#8e8e8e"
-                fill="#8e8e8e"
-                height="16"
-                role="img"
-                viewBox="0 0 24 24"
-                width="16">
-                <path
-                  d="M19 10.5A8.5 8.5 0 1110.5 2a8.5 8.5 0 018.5 8.5z"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"></path>
-                <line
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  x1="16.511"
-                  x2="22"
-                  y1="16.511"
-                  y2="22"></line>
-              </svg>
-            </span>
-            <input type="text" placeholder="검색" />
-          </form>
+          <div id="search-input-wrapper">
+            <form id="search-input">
+              <h3 className="blind">검색창</h3>
+              <span id="search-icon">
+                <svg
+                  aria-label="검색"
+                  className="_8-yf5 "
+                  color="#8e8e8e"
+                  fill="#8e8e8e"
+                  height="16"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="16">
+                  <path
+                    d="M19 10.5A8.5 8.5 0 1110.5 2a8.5 8.5 0 018.5 8.5z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"></path>
+                  <line
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    x1="16.511"
+                    x2="22"
+                    y1="16.511"
+                    y2="22"></line>
+                </svg>
+              </span>
+              <input type="text" placeholder="검색" />
+            </form>
+          </div>
           <div id="icon-button">
             <h3 className="blind">아이콘 버튼</h3>
             <h4 className="blind">홈</h4>

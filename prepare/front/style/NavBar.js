@@ -32,10 +32,16 @@ export const Wrapper = styled.div`
     margin-top: 4px;
   }
 
+  #search-input-wrapper {
+    width: 450px;
+    text-align: end;
+  }
+
   #search-input {
     display: inline-flex;
     align-items: center;
     background-color: #efefef;
+    margin-right: 10px;
     width: 268px;
     height: 36px;
     border-radius: 7px;
@@ -68,9 +74,13 @@ export const Wrapper = styled.div`
     outline: none;
     padding: 0 2%;
     vertical-align: middle;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 16px;
     padding-left: 12px;
+    // placeholder
+    :placeholder-shown {
+      font-weight: 300;
+    }
   }
 
   #icon-button {

@@ -40,7 +40,7 @@ const PostCardEntry = () => {
         </div>
 
         <div id="post-img-wrapper">
-          <img className="post-img" src="/images/my-picture.png" alt="게시글 이미지" />
+          <img className="post-img" src="/images/커피.png" alt="게시글 이미지" />
         </div>
 
         <div id="icon-wrapper">

@@ -12,7 +12,7 @@ const UserInfo = () => {
       <div id="my-info-wrapper">
         <div id="my-avatar">
           <a>
-            <Avatar size={56} icon={<img class="my-img" src="/images/self.png" />} />
+            <Avatar size={56} icon={<img className="my-img" src="/images/self.png" />} />
           </a>
         </div>
         <div id="my-id-name">

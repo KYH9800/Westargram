@@ -19,26 +19,30 @@ const ShortsForm = (props) => {
     <ShortsFormWrapper>
       <div id="shorts-empty-box"></div>
       <div id="shorts-box">
-        <StyledSlider {...settings}>
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-          <ShortsAvatar />
-        </StyledSlider>
+        {true ? (
+          <StyledSlider {...settings}>
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+            <ShortsAvatar />
+          </StyledSlider>
+        ) : (
+          <StyledSlider {...settings}></StyledSlider>
+        )}
       </div>
     </ShortsFormWrapper>
   );

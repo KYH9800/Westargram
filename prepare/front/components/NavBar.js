@@ -82,7 +82,7 @@ const NavBar = () => {
               </a>
             </Link>
             <h4 className="blind">다이렉트 메세지</h4>
-            <Link href="/direct">
+            <Link href="/direct/inbox">
               <a id="menu-list-item">
                 <svg
                   aria-label="Direct"

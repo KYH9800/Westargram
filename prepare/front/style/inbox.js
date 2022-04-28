@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 
 export const ImboxWrapper = styled.div`
+  position: fixed;
   width: 935px;
+  height: 100%;
 
   #inbox-wrapper {
-    top: 13px;
     background-color: #fff;
     border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     border-radius: 4px;
     width: 100%;
-    height: 100%;
+    height: 91.5%;
     display: flex;
     position: relative;
+    top: 13px;
   }
 
   #direct-list-wrapper {
     user-select: none;
     border-right: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
     height: 100%;
+    width: 348px;
   }
 
   #direct-my-name-wrapper {
@@ -79,11 +82,48 @@ export const ImboxWrapper = styled.div`
     }
   }
 
+  #chat-list-wrapper {
+    height: 100%;
+  }
+
+  #chat-list-wrapper .direct-users-list {
+    height: 93.7%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  @media (max-height: 900px) {
+    #chat-list-wrapper {
+      height: 100%;
+    }
+
+    #chat-list-wrapper .direct-users-list {
+      height: 92%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  // none-list-loading-images
+  #directListLoading-image > img {
+    margin-top: 12px;
+    margin-left: 15px;
+    width: 312px;
+  }
+
   // null-box
   #message-wrapper {
+    position: relative;
     text-align: center;
     user-select: none;
     width: 586px;
+  }
+
+  #message-wrapper .null-item {
+    position: absolute;
+    top: 370px;
+    right: 0;
+    left: 0;
   }
 
   #null-massege-box > h2 {
@@ -116,8 +156,14 @@ export const ImboxWrapper = styled.div`
   @media (max-width: 1000px) {
     max-width: 640px;
     margin: 0 auto;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+
     #inbox-wrapper {
       display: block;
+      height: 100%;
       top: 0;
     }
 
@@ -127,37 +173,64 @@ export const ImboxWrapper = styled.div`
 
     #direct-my-name-wrapper .direct-my-name .change-my-id {
       display: flex;
-      width: 300px;
+      width: auto;
       position: relative;
-      top: 2px;
-      left: 210px;
-      // padding: 0px 51px;
+      top: 0px;
+      left: 0px;
+      padding: 0px;
+      justify-content: center;
+    }
+
+    #direct-list-wrapper {
+      width: auto;
     }
 
     #message-wrapper {
       display: none;
+    }
+
+    #message-wrapper .null-item {
+      top: 290px;
+    }
+
+    #direct-my-name-wrapper .direct-my-name .change-my-id {
+    }
+  }
+
+  @media (max-height: 900px) {
+    height: 100%;
+
+    #inbox-wrapper {
+      height: 89%;
+    }
+
+    #message-wrapper .null-item {
+      position: absolute;
+      top: 290px;
+      right: 0;
+      left: 0;
     }
   }
 `;
 
 export const DirectUserListWrapper = styled.div`
   cursor: pointer;
-  padding: 8px 0px;
+
   #user-recommendation-list-wrapper {
     display: inline-flex;
     vertical-align: middle;
     align-items: center;
     width: 348px;
-    height: 72px;
+    height: 73px;
     padding: 0 20px;
   }
 
   #user-recommendation-list-wrapper:hover {
-    background-color: #f2f2f2;
+    background-color: #f8f8f8;
   }
 
   #user-recommendation-list-wrapper:active {
-    background-color: #e8e8e8;
+    background-color: #f1f1f1;
   }
 
   // user-avatar
@@ -213,5 +286,12 @@ export const DirectUserListWrapper = styled.div`
     vertical-align: middle;
     margin: 26px 0;
     margin-left: 8px;
+  }
+
+  // 모바일
+  @media (max-width: 1000px) {
+    #user-recommendation-list-wrapper {
+      width: auto;
+    }
   }
 `;

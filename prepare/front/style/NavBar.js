@@ -85,6 +85,16 @@ export const Wrapper = styled.div`
     cursor: pointer;
   }
 
+  #menu-list-item:active {
+    svg {
+      color: #969696;
+    }
+    #findperson,
+    #nav-heart {
+      fill: #969696;
+    }
+  }
+
   #avatar {
     cursor: pointer;
     margin-left: 10px;

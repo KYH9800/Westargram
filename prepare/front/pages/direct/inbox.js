@@ -63,9 +63,34 @@ const Direct = () => {
             </div>
             <div id="chat-list-wrapper">
               <div className="direct-users-list">
-                <DirectUserList />
-                <DirectUserList />
-                <DirectUserList />
+                {true ? (
+                  <>
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                    <DirectUserList />
+                  </>
+                ) : (
+                  <div id="directListLoading-image">
+                    <img src="/images/directLoading-image.png" />
+                    <img src="/images/directLoading-image.png" />
+                    <img src="/images/directLoading-image.png" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -109,7 +134,7 @@ const Direct = () => {
                 </svg>
               </div>
               <div id="null-massege-box">
-                <h2>내 메세지</h2>
+                <h2>내 메시지</h2>
                 <p>친구나 그룹에 비공개 사진과 메시지를 보내보세요.</p>
                 <button>메시지 보내기</button>
               </div>

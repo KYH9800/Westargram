@@ -7,7 +7,7 @@
     "dev": "next -p 3060",
     "start": "cross-env NODE_ENV=production next start -p 3060",
     "build": "next build && next export",
-    "deploy": "next build && next export && touch out/.nojekyll && git add prepare/front/out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
+    "deploy": "touch out/.nojekyll && git add prepare/front/out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
   "author": "KYH",
   "license": "ISC",

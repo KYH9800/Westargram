@@ -13,7 +13,7 @@ const ShortsAvatar = () => {
     <ShortsAvatarWrapper>
       <div className="user-avatar">
         <a onClick={onClick}>
-          <Avatar src={<img className="ant-image-img" src="/images/self.png" />} size="large" />
+          <Avatar src={<img className="ant-image-img" src={`/images/self.png`} />} size="large" />
           <p className="userId">kyh_0506</p>
         </a>
       </div>

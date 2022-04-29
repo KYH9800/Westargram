@@ -1,6 +1,9 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+// components
+import { PortfolioProvider } from '../context/context';
+import { prefix } from '../config/config';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {

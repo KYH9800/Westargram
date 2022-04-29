@@ -35,10 +35,6 @@ const ShortsForm = (props) => {
             <ShortsAvatar />
             <ShortsAvatar />
             <ShortsAvatar />
-            <ShortsAvatar />
-            <ShortsAvatar />
-            <ShortsAvatar />
-            <ShortsAvatar />
           </StyledSlider>
         ) : (
           <StyledSlider {...settings}></StyledSlider>

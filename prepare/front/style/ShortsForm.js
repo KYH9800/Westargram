@@ -141,8 +141,8 @@ export const ShortsAvatarWrapper = styled.div`
   // antd
   .ant-avatar.ant-avatar-lg.ant-avatar-circle.ant-avatar-image {
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 62px;
+    height: 62px;
     border: 3px solid rgba(var(--b6a, 219, 219, 219), 1);
   }
 

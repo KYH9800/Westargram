@@ -10,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   background-color: #fafafa;
+  width: 100%;
+  height: 0;
   
   header {
     z-index: 100;

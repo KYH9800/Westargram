@@ -6,7 +6,7 @@ node_modules/
 
 # Serverless directories
 .serverless
-/front/build/
+# /front/build/
 react-nodebird.pem
 
 # aws-ec2-access-key

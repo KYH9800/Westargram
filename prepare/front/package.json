@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next -p 3060",
-    "build": "next build", // cross-env ANALYZE=true NODE_ENV=production
+    "build": "next build",
     "start": "cross-env NODE_ENV=production next start -p 3060",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

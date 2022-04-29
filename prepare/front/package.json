@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next -p 3060",
-    "build": "cross-env ANALYZE=true NODE_ENV=production next build",
-    "start": "cross-env NODE_ENV=production next start -p 3060"
+    "build": "next build", // cross-env ANALYZE=true NODE_ENV=production
+    "start": "cross-env NODE_ENV=production next start -p 3060",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "KYH",
   "license": "ISC",
@@ -23,5 +25,9 @@
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  },
+  "homepage": "http://KYH9800.github.io/Westargram"
 }

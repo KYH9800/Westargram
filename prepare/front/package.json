@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "cross-env NODE_ENV=production next start -p 3060",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "export": "next export"
   },
   "author": "KYH",
   "license": "ISC",

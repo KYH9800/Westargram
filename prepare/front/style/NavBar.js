@@ -139,7 +139,7 @@ export const Wrapper = styled.div`
 
   #user-list {
     user-select: none;
-    border-radius: 7px;
+    border-radius: 5px;
     box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
     background-color: #fff;
     text-align: left;

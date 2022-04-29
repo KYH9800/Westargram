@@ -1,5 +1,6 @@
 ## Westagram (with.React / Next.js)
-https://kyh9800.github.io/Westargram/
+
+사이트 링크: https://kyh9800.github.io/Westargram/
 
 > ###### Instagram을 흉내낸 SNS 서비스 [빌드중...]
 

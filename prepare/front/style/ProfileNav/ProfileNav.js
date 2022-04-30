@@ -7,7 +7,7 @@ export const ProfileNavWrapper = styled.div`
 
   #profile-nav-list a {
     padding: 17.7px 7.9px;
-    margin-right: 45px;
+    margin: 0 22px;
   }
 
   #profile-nav-list a > svg {

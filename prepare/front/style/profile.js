@@ -26,6 +26,10 @@ export const ProfileWrapper = styled.div`
       margin-bottom: 44px;
     }
 
+    #profile-img .user-img {
+      cursor: pointer;
+    }
+
     #profile-img > span {
       width: 150px;
       height: 150px;
@@ -49,7 +53,8 @@ export const ProfileWrapper = styled.div`
       color: #262626;
     }
 
-    #profile-user-info .profile-title .profile-all-btn {
+    #profile-user-info .profile-title .profile-edit-btn {
+      cursor: pointer;
       width: 84px;
       height: 30.3px;
       background-color: #fff;
@@ -60,7 +65,10 @@ export const ProfileWrapper = styled.div`
       color: #262626;
       margin-bottom: 13px;
     }
-    #profile-mobile-btn {
+    #profile-user-info .profile-title .profile-edit-btn:active {
+      color: #737373;
+    }
+    #profile-mobile-edit-btn {
       display: none; // PC 화면 시 사라짐
     }
 
@@ -81,7 +89,12 @@ export const ProfileWrapper = styled.div`
       font-weight: 400;
     }
 
-    #profile-user-info .profile-post-follow > span .count {
+    #profile-follow {
+      color: #262626;
+    }
+
+    #profile-post-count {
+      color: #262626;
       font-weight: 600;
     }
 
@@ -147,10 +160,11 @@ export const ProfileWrapper = styled.div`
       margin-left: 12px;
     }
 
-    #profile-user-info .profile-title .profile-all-btn {
+    #profile-user-info .profile-title .profile-edit-btn {
       display: none; // Mobile 화면 시 사라짐
     }
-    #profile-mobile-btn {
+    #profile-mobile-edit-btn {
+      cursor: pointer;
       display: block;
       width: 250px;
       height: 30px;
@@ -161,6 +175,9 @@ export const ProfileWrapper = styled.div`
       font-weight: 600;
       color: #262626;
       margin-bottom: 13px;
+    }
+    #profile-mobile-edit-btn:active {
+      color: #737373;
     }
 
     // 게시물, 팔로워, 팔로우

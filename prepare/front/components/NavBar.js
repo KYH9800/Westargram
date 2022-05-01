@@ -30,7 +30,7 @@ const NavBar = () => {
         <nav>
           <div id="main-logo">
             <h3 className="blind">로고</h3>
-            <Link href="/">
+            <Link href="/home">
               <a>
                 <img className="logo-img" src="/images/Westagram.png" />
               </a>
@@ -74,7 +74,7 @@ const NavBar = () => {
           <div id="icon-button">
             <h3 className="blind">아이콘 버튼</h3>
             <h4 className="blind">홈</h4>
-            <Link href="/">
+            <Link href="/home">
               <a id="menu-list-item">
                 <svg
                   aria-label="홈"

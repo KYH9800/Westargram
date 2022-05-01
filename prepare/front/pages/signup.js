@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/signup';
 
 const Signup = () => {
+  const [email, setEmail] = useState(''); // req.body.email
+  const [password, setPassword] = useState(''); // req.body.password
+  const [name, setName] = useState(''); // req.body.name
+  const [userIdName, setUserIdName] = useState(''); // req.body.userIdName
   const warning = true;
 
   return (

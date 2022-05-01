@@ -31,7 +31,7 @@ export const LoginWrapper = styled.div`
   // 로그인 form
   #login-form-wrapper {
     position: relative;
-    top: 260px;
+    top: 180px;
     margin: 0 auto;
     background-color: #fff;
     text-align: center;

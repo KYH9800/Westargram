@@ -47,7 +47,7 @@ const Login = () => {
           </button>
 
           <h2 id="blind">비밀번호 찾기</h2>
-          <Link href="signup">
+          <Link href="/signup">
             <a>
               <p id="enter-signup">계정 만들기</p>
             </a>

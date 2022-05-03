@@ -130,7 +130,7 @@ export const LoginWrapper = styled.div`
     user-select: none;
     color: #0095f6;
     margin-bottom: 20px;
-    margin: 0 7px;
+    margin: 0 10px;
   }
   #login:active,
   #signup:active {

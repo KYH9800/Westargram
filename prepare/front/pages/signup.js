@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/signup';
 
+import { ACTION_REQUEST } from '../reducers/user';
+
 const Signup = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState(''); // req.body.email
   const [password, setPassword] = useState(''); // req.body.password
   const [name, setName] = useState(''); // req.body.name
   const [userIdName, setUserIdName] = useState(''); // req.body.userIdName
   const warning = true;
+
+  const test = () => {
+    dispatch({
+      type: ACTION_REQUEST,
+    });
+  };
 
   return (
     <LoginWrapper>
@@ -59,7 +69,9 @@ const Signup = () => {
                 <span id="login">로그인</span>
               </a>
             </Link>
-            <span id="signup">가입하기</span>
+            <span id="signup" onClick={test}>
+              가입하기
+            </span>
           </div>
         </div>
       </form>

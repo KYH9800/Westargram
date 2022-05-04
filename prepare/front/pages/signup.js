@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,16 +13,26 @@ const Signup = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { signUpError } = useSelector((state) => state.user);
+  const { signUpDone, signUpError } = useSelector((state) => state.user);
 
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangetPassword] = useInput(''); // req.body.password
-  const [passwordCheck, onChangetPasswordCheck] = useInput('');
-  const [name, onChangetName] = useInput(''); // req.body.name
-  const [userIdName, onChangetUserIdName] = useInput(''); // req.body.userIdName
+  const [email, onChangeEmail] = useInput(''); // req.body
+  const [password, onChangetPassword] = useInput(''); // req.body
+  const [passwordCheck, onChangetPasswordCheck] = useInput(''); // req.body
+  const [name, onChangetName] = useInput(''); // req.body
+  const [userIdName, onChangetUserIdName] = useInput(''); // req.body
 
   let pswCondition = false; // 가입조건 충족 여부
   const warning = true;
+
+  // useEffect
+  useEffect(() => {
+    if (signUpError) {
+      alert(signUpError);
+    } else if (signUpDone) {
+      alert('가입이 완료되었습니다. 로그인을 해주세요.');
+      router.push('/');
+    }
+  }, [signUpDone, signUpError]);
 
   // 비밀번호 조건 검사
   const passwordCondition = useCallback((password) => {
@@ -51,23 +61,21 @@ const Signup = () => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault(); // 기본 동작 방지
-      console.log('email:', email, 'password:', password, 'name:', name, 'userIdName:', userIdName, '을 보냄');
-
+      console.log('이거 비번: ', password, passwordCheck);
       // 가입조건이 갖춰져야 가입하기가 가능하다
       if (!pswCondition) {
         return alert('가입조건이 갖춰지지 않았습니다.');
+      } else if (password !== passwordCheck) {
+        return alert('패스워드가 일치하지 않습니다.');
       }
       // 가입 조건 완료, 가입 완료, 로그인 페이지 이동
-      if (pswCondition) {
-        dispatch({
-          type: SIGN_UP_REQUEST,
-          data: { email, password, name, userIdName },
-        });
-        alert('가입이 완료되었습니다. 로그인을 해주세요.');
-        router.push('/');
-      }
+      console.log('email:', email, 'password:', password, 'name:', name, 'userIdName:', userIdName, '을 보냄');
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { email, password, name, userIdName },
+      });
     },
-    [email, password, name, userIdName]
+    [email, password, passwordCheck, name, userIdName, signUpDone, signUpError]
   );
 
   return (
@@ -82,7 +90,7 @@ const Signup = () => {
             <div id="input-title-wrapper">
               <h3 id="input-title">
                 이메일
-                {email.length > 0 && warning ? <span id="alert-text">이미 존재하는 XXX입니다.</span> : null}
+                {email.length > 0 && warning ? <span id="alert-text">{signUpError}</span> : null}
               </h3>
               <input
                 id="email-input"

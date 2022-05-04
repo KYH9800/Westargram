@@ -5,6 +5,7 @@ import axios from 'axios';
 import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../reducers/user';
 
 function loginAPI(data) {
+  console.log('data', data);
   return axios.post('/user', data);
 }
 

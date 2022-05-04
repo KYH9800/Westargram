@@ -20,6 +20,7 @@ const createStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const devMode = process.env.NODE_ENV === 'development';
 
+  // process.env.NODE_ENV를 development와 production을 나누기
   const store = configureStore({
     reducer: rootReducer,
     middleware: [sagaMiddleware, loggerMiddleware],

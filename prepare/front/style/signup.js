@@ -136,4 +136,10 @@ export const LoginWrapper = styled.div`
   #signup:active {
     color: #0067a9;
   }
+
+  #submit-btn {
+    cursor: pointer;
+    border: 0;
+    background-color: #fff;
+  }
 `;

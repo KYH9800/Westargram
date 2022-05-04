@@ -1,42 +1,37 @@
+import produce from 'immer';
+
 // initialState
 export const initialState = {
-  request: false,
-  loading: false,
-  failure: false,
+  //* 회원가입 시도중
+  signUpLoading: false,
+  signUpDone: false,
+  signUpError: null,
 };
 
 // action 정의, action 함수 정의
-export const ACTION_REQUEST = 'ACTION_REQUEST';
-export const ACTION_LOADING = 'ACTION_LOADING';
-export const ACTION_FAILURE = 'ACTION_FAILURE';
+export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
 // reducer
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ACTION_REQUEST:
-      return {
-        ...state,
-        request: true,
-        loading: false,
-        failure: false,
-      };
-    case ACTION_LOADING:
-      return {
-        ...state,
-        request: false,
-        loading: true,
-        failure: false,
-      };
-    case ACTION_FAILURE:
-      return {
-        ...state,
-        request: false,
-        loading: false,
-        failure: true,
-      };
-    default:
-      return state;
-  }
-};
+const reducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      //* SIGNUP
+      case SIGN_UP_REQUEST:
+        draft.signUpLoading = true;
+        draft.signUpDone = false;
+        draft.signUpError = null;
+        break;
+      case SIGN_UP_SUCCESS:
+        draft.signUpLoading = false;
+        draft.signUpDone = true;
+        break;
+      case SIGN_UP_FAILURE:
+        draft.signUpLoading = false;
+        draft.signUpError = action.error;
+        break;
+    }
+  });
 
 export default reducer;

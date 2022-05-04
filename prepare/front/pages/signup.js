@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/signup';
@@ -33,6 +32,13 @@ const Signup = () => {
       router.push('/');
     }
   }, [signUpDone, signUpError]);
+
+  // 로그인 페이지로 이동
+  const onClickLoginRouter = () => {
+    if (confirm('로그인 페이지로 이동합니다.\n가입을 위해 입력한 정보는 사라집니다. 그래도 이동하시겠습니까?')) {
+      router.push('/');
+    }
+  };
 
   // 비밀번호 조건 검사
   const passwordCondition = useCallback((password) => {
@@ -153,11 +159,9 @@ const Signup = () => {
 
           <h2 id="blind">가입하기</h2>
           <div id="signup-btn">
-            <Link href="/">
-              <a>
-                <span id="login">로그인</span>
-              </a>
-            </Link>
+            <a onClick={onClickLoginRouter}>
+              <span id="login">로그인</span>
+            </a>
             <span id="signup">
               <button id="submit-btn" type="submit" form="login-form-wrapper">
                 가입하기

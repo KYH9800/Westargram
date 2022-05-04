@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import Router from 'next/router';
-import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/login';
+// redux
+import { RESET_SIGN_UP_STATES } from '../reducers/user';
 
 const Login = () => {
-  const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(toggle);
-    if (toggle) {
-      // Router.push('/home');
-    }
-  }, [toggle]);
-
-  const onToggleClick = () => {
-    setToggle((prevState) => !prevState);
-  };
+    dispatch({
+      type: RESET_SIGN_UP_STATES, // 회원가입 상태 초기화
+    });
+  }, []);
 
   const onClickSubmit = (e) => {
     e.preventDefault();
     console.log('onClickSubmit');
+  };
+
+  const onClickSignupRouter = () => {
+    if (confirm('회원가입 페이지로 이동합니다.')) {
+      router.push('/signup');
+    }
   };
 
   return (
@@ -42,16 +46,12 @@ const Login = () => {
           </div>
 
           <h2 id="blind">로그인 버튼</h2>
-          <button id="login-btn" onClick={onToggleClick}>
-            로그인
-          </button>
+          <button id="login-btn">로그인</button>
 
           <h2 id="blind">비밀번호 찾기</h2>
-          <Link href="/signup">
-            <a>
-              <p id="enter-signup">계정 만들기</p>
-            </a>
-          </Link>
+          <a onClick={onClickSignupRouter}>
+            <p id="enter-signup">계정 만들기</p>
+          </a>
         </div>
       </form>
     </LoginWrapper>

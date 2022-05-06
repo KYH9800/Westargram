@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 // CSS
 import { ProfileWrapper } from '../style/profile';
 // antd
@@ -8,6 +9,15 @@ import Layout from '../components/Layout';
 import ProfileNav from '../components/ProfileNav/ProfileNav';
 
 const Profile = () => {
+  const { me } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!me) {
+      alert('서비스 이용을 위해 로그인이 필요합니다.');
+      router.push('/');
+    }
+  }, [me]);
+
   return (
     <Layout>
       <ProfileWrapper>

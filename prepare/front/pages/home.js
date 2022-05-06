@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 // CSS
 import { MainWrapper } from '../style/index';
 // components
@@ -8,6 +10,16 @@ import PostCard from '../components/PostCard';
 import UserInfo from '../components/UserInfo';
 
 const Home = () => {
+  const router = useRouter();
+  const { me } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!me) {
+      alert('서비스 이용을 위해 로그인이 필요합니다.');
+      router.push('/');
+    }
+  }, [me]);
+
   return (
     <Layout>
       <MainWrapper>

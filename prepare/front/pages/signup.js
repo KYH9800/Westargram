@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/signup';
 // redux
@@ -63,6 +64,38 @@ const Signup = () => {
     }
   });
 
+  // User ID 중복확인
+  const userIdCheck = () => {
+    let successUserId = false;
+    let failureUserId = false;
+    // axios
+    axios
+      .post('http://localhost:3065/user/userIdName', {
+        userIdName: userIdName,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          successUserId = true;
+          // failureUserId = false;
+        }
+      })
+      .catch((err) => {
+        // console.log('err.response.data:', err.response);
+        if (err.response.status === 403) {
+          // successUserId = false;
+          failureUserId = true;
+        }
+      });
+    console.log('successUserId:', successUserId, 'failureUserId:', failureUserId);
+    // aleadyUserId
+    if (successUserId) {
+      return <span style={{ color: 'blue' }}>사용가능한 아이디 입니다.</span>;
+    }
+    if (failureUserId) {
+      return <span style={{ color: 'red' }}>이미 사용중인 아이디 입니다.</span>;
+    }
+  };
+
   // 가입하기
   const onSubmit = useCallback(
     (e) => {
@@ -96,7 +129,7 @@ const Signup = () => {
             <div id="input-title-wrapper">
               <h3 id="input-title">
                 이메일
-                {email.length > 0 && warning ? <span id="alert-text">{signUpError}</span> : null}
+                {email.length > 0 ? <span id="alert-text">{signUpError}</span> : null}
               </h3>
               <input
                 id="email-input"
@@ -138,13 +171,13 @@ const Signup = () => {
             </div>
 
             <div id="input-title-wrapper">
-              <h3 id="input-title">이름{warning ? <span id="alert-text">이미 존재하는 XXX입니다.</span> : null}</h3>
+              <h3 id="input-title">이름</h3>
               <input id="name" type="text" placeholder="이름" value={name} onChange={onChangetName} required />
             </div>
 
             <div id="input-title-wrapper">
               <h3 id="input-title">
-                사용자 아이디{warning ? <span id="alert-text">이미 존재하는 XXX입니다.</span> : null}
+                사용자 아이디{userIdName.length > 0 ? <span id="alert-text">{userIdCheck()}</span> : null}
               </h3>
               <input
                 id="user-name"

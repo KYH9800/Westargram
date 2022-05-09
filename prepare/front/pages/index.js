@@ -25,7 +25,7 @@ const Login = () => {
   useEffect(() => {
     console.log('me', me);
     if (me) {
-      // router.push('/home');
+      router.push('/home');
     }
   });
 

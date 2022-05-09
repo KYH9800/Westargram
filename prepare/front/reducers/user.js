@@ -81,11 +81,12 @@ const reducer = (state = initialState, action) =>
       case LOG_OUT_SUCCESS:
         draft.logOutLoading = false;
         draft.logOutDone = true;
-        // draft.me = action.data;
+        draft.me = null;
         break;
       case LOG_OUT_FAILURE:
         draft.logOutLoading = false;
         draft.logOutError = action.error;
+        draft.me = null;
       // 회원가입
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;

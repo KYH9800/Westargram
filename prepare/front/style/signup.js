@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const LoginWrapper = styled.div`
   position: relative; // position 기준
+  top: 120px; // 205px;
 
   // 감추기
   #blind {
@@ -31,7 +32,6 @@ export const LoginWrapper = styled.div`
   // 로그인 form
   #login-form-wrapper {
     position: relative;
-    top: 120px; // 205px;
     margin: 0 auto;
     background-color: #fff;
     /* text-align: center; */

@@ -18,6 +18,11 @@ export const initialState = {
   signUpLoading: false,
   signUpDone: false,
   signUpError: null,
+  // 사용자 아이디 중복확인
+  userIdNameCheckLoading: false,
+  userIdNameCheckDone: false,
+  userIdNameCheckError: null,
+  resultUserIdName: null,
   // 내 로그인 정보
   me: null,
   // user 정보
@@ -31,6 +36,10 @@ export const RESET_SIGN_UP_STATES = 'RESET_SIGN_UP_STATES';
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
+// 사용자 아이디 중복확인
+export const USER_ID_NAME_CHECK_REQUEST = 'USER_ID_NAME_CHECK_REQUEST';
+export const USER_ID_NAME_CHECK_SUCCESS = 'USER_ID_NAME_CHECK_SUCCESS';
+export const USER_ID_NAME_CHECK_FAILURE = 'USER_ID_NAME_CHECK_FAILURE';
 // 로그인
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -90,6 +99,21 @@ const reducer = (state = initialState, action) =>
       case SIGN_UP_FAILURE:
         draft.signUpLoading = false;
         draft.signUpError = action.error;
+        break;
+      // 사용자 아이디 중복확인
+      case USER_ID_NAME_CHECK_REQUEST:
+        draft.userIdNameCheckLoading = true;
+        draft.userIdNameCheckDone = false;
+        draft.userIdNameCheckError = null;
+        break;
+      case USER_ID_NAME_CHECK_SUCCESS:
+        draft.userIdNameCheckLoading = false;
+        draft.userIdNameCheckDone = true;
+        draft.resultUserIdName = <span style={{ color: 'blue' }}>{action.data}</span>;
+        break;
+      case USER_ID_NAME_CHECK_FAILURE:
+        draft.userIdNameCheckLoading = false;
+        draft.userIdNameCheckError = action.error;
         break;
       // 회원가입 상태 초기화
       case RESET_SIGN_UP_STATES:

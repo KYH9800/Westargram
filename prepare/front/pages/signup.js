@@ -5,7 +5,7 @@ import axios from 'axios';
 // CSS
 import { GlobalStyle, LoginWrapper } from '../style/signup';
 // redux
-import { SIGN_UP_REQUEST } from '../reducers/user';
+import { SIGN_UP_REQUEST, USER_ID_NAME_CHECK_REQUEST } from '../reducers/user';
 // custom hooks
 import useInput from '../hooks/useInput';
 
@@ -13,16 +13,16 @@ const Signup = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { signUpDone, signUpError } = useSelector((state) => state.user);
-
+  const { signUpDone, signUpError, userIdNameCheckError, resultUserIdName } = useSelector((state) => state.user);
+  // useState
+  const [userIdName, setChangetUserIdName] = useState(''); // req.body
+  // useInput
   const [email, onChangeEmail] = useInput(''); // req.body
   const [password, onChangetPassword] = useInput(''); // req.body
   const [passwordCheck, onChangetPasswordCheck] = useInput(''); // req.body
   const [name, onChangetName] = useInput(''); // req.body
-  const [userIdName, onChangetUserIdName] = useInput(''); // req.body
 
-  let pswCondition = false; // 가입조건 충족 여부
-  const warning = true;
+  let submitCondition = false; // 가입조건 충족 여부
 
   // useEffect
   useEffect(() => {
@@ -48,52 +48,31 @@ const Signup = () => {
     const special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi; //특수문자가 있는 경우
 
     if (password.length < 8) {
-      pswCondition = false;
+      submitCondition = false;
       return <span id="alert-text">비밀번호는 8자리 이상이어야 합니다.</span>;
     } else if (password.replace(blank_pattern, '') === '') {
-      pswCondition = false;
+      submitCondition = false;
       return <span id="alert-text">공백만 입력되었습니다.</span>;
     } else if (string_with_blank_pattern.test(password) === true) {
-      pswCondition = false;
+      submitCondition = false;
       return <span id="alert-text">문자 사이에 공백이 존재합니다.</span>;
     } else if (special_pattern.test(password) === false) {
-      pswCondition = false;
+      submitCondition = false;
       return <span id="alert-text">비밀번호는 특수문자가 포함되어야 합니다.</span>;
     } else {
-      pswCondition = true;
+      submitCondition = true;
     }
   });
 
   // User ID 중복확인
-  const userIdCheck = () => {
-    let successUserId = false;
-    let failureUserId = false;
-    // axios
-    axios
-      .post('http://localhost:3065/user/userIdName', {
-        userIdName: userIdName,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          successUserId = true;
-          // failureUserId = false;
-        }
-      })
-      .catch((err) => {
-        // console.log('err.response.data:', err.response);
-        if (err.response.status === 403) {
-          // successUserId = false;
-          failureUserId = true;
-        }
-      });
-    console.log('successUserId:', successUserId, 'failureUserId:', failureUserId);
-    // aleadyUserId
-    if (successUserId) {
-      return <span style={{ color: 'blue' }}>사용가능한 아이디 입니다.</span>;
-    }
-    if (failureUserId) {
-      return <span style={{ color: 'red' }}>이미 사용중인 아이디 입니다.</span>;
-    }
+  const onChangeUserIdName = (e) => {
+    console.log('e.target.value:', e.target.value);
+    setChangetUserIdName(e.target.value);
+    // dispatch
+    dispatch({
+      type: USER_ID_NAME_CHECK_REQUEST,
+      data: { userIdName: e.target.value },
+    });
   };
 
   // 가입하기
@@ -102,7 +81,10 @@ const Signup = () => {
       e.preventDefault(); // 기본 동작 방지
       console.log('이거 비번: ', password, passwordCheck);
       // 가입조건이 갖춰져야 가입하기가 가능하다
-      if (!pswCondition) {
+      console.log('resultUserIdName:', resultUserIdName);
+      if (userIdNameCheckError) {
+        return alert('이미 사용중인 아이디 입니다.');
+      } else if (!submitCondition) {
         return alert('가입조건이 갖춰지지 않았습니다.');
       } else if (password !== passwordCheck) {
         return alert('패스워드가 일치하지 않습니다.');
@@ -177,14 +159,20 @@ const Signup = () => {
 
             <div id="input-title-wrapper">
               <h3 id="input-title">
-                사용자 아이디{userIdName.length > 0 ? <span id="alert-text">{userIdCheck()}</span> : null}
+                사용자 아이디
+                {userIdName.length > 0 && userIdNameCheckError ? (
+                  <span id="alert-text">{userIdNameCheckError}</span>
+                ) : userIdName.length > 0 ? (
+                  <span id="alert-text">{resultUserIdName}</span>
+                ) : null}
               </h3>
               <input
                 id="user-name"
                 type="text"
                 placeholder="사용자 아이디"
+                // pattern="/[^a-zA-Z]/g"
                 value={userIdName}
-                onChange={onChangetUserIdName}
+                onChange={onChangeUserIdName}
                 required
               />
             </div>

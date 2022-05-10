@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 // CSS
 import { ProfileWrapper } from '../style/profile';
@@ -9,6 +10,7 @@ import Layout from '../components/Layout';
 import ProfileNav from '../components/ProfileNav/ProfileNav';
 
 const Profile = () => {
+  const router = useRouter();
   const { me } = useSelector((state) => state.user);
 
   useEffect(() => {

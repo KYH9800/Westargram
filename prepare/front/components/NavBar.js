@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Router from 'next/router';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 // CSS
 import { Wrapper } from '../style/NavBar';
@@ -7,8 +7,12 @@ import { Wrapper } from '../style/NavBar';
 import { Avatar } from 'antd';
 // components
 import Activity from './NavMenu/Activity';
+// redux
+import { LOG_OUT_REQUEST } from '../reducers/user';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+
   const [userToggle, setUserToggle] = useState(false);
   const [heartToggle, setHeartUserToggle] = useState(false);
 
@@ -23,6 +27,12 @@ const NavBar = () => {
   const onUserToggleClick = () => {
     setUserToggle((prevState) => !prevState);
   };
+
+  const onClickLogout = useCallback(() => {
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
+  }, []);
 
   return (
     <Wrapper>
@@ -324,7 +334,9 @@ const NavBar = () => {
                     <span className="list-keyword">계정 전환</span>
                   </div>
                   <hr id="logout-line" />
-                  <div className="logout-btn">로그아웃</div>
+                  <div className="logout-btn" onClick={onClickLogout}>
+                    로그아웃
+                  </div>
                 </div>
               </>
             ) : null}

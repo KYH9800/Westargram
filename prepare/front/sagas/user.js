@@ -12,6 +12,9 @@ import {
   USER_ID_NAME_CHECK_REQUEST,
   USER_ID_NAME_CHECK_SUCCESS,
   USER_ID_NAME_CHECK_FAILURE,
+  LOG_OUT_REQUEST,
+  LOG_OUT_SUCCESS,
+  LOG_OUT_FAILURE,
 } from '../reducers/user';
 
 // signup
@@ -83,6 +86,27 @@ function* login(action) {
   }
 }
 
+// logout
+function logoutAPI() {
+  return axios.post('/user/logout');
+}
+
+function* logout(action) {
+  try {
+    // api 통신할때는 call(동기)
+    yield call(logoutAPI);
+    yield put({
+      type: LOG_OUT_SUCCESS,
+      data: action.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOG_OUT_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchSignup() {
   yield takeLatest(SIGN_UP_REQUEST, signup);
 }
@@ -95,6 +119,10 @@ function* watchLogin() {
   yield takeLatest(LOG_IN_REQUEST, login);
 }
 
+function* watchLogout() {
+  yield takeLatest(LOG_OUT_REQUEST, logout);
+}
+
 export default function* userSaga() {
-  yield all([fork(watchSignup), fork(watchUserIdNameCheck), fork(watchLogin)]);
+  yield all([fork(watchSignup), fork(watchUserIdNameCheck), fork(watchLogin), fork(watchLogout)]);
 }

@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // redux
-import { wrapper } from '../store/configureStore';
+import wrapper from '../store/configureStore';
 
 const MyApp = ({ Component, pageProps }) => {
   return (

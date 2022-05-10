@@ -7,8 +7,8 @@ import userSaga from './user';
 import { backURL } from '../config/config';
 
 axios.defaults.baseURL = backURL;
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
-  yield all([fork(userSaga)]);
+  yield all([fork(userSaga)]); // fork(postSaga)
 }

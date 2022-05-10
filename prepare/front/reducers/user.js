@@ -44,14 +44,14 @@ export const USER_ID_NAME_CHECK_FAILURE = 'USER_ID_NAME_CHECK_FAILURE';
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
+// 내 로그인 정보 가져오기
+export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST';
+export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS';
+export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE';
 // 로그아웃
 export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
-// 로그인 정보 가져오기
-export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST';
-export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS';
-export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE';
 
 // reducer
 const reducer = (state = initialState, action) =>
@@ -71,6 +71,21 @@ const reducer = (state = initialState, action) =>
       case LOG_IN_FAILURE:
         draft.logInLoading = false;
         draft.logInError = action.error;
+        break;
+      // 내 로그인 정보 불러오기
+      case LOAD_MY_INFO_REQUEST:
+        draft.loadMyInfoLoading = true;
+        draft.loadMyInfoDone = false;
+        draft.loadMyInfoError = null;
+        break;
+      case LOAD_MY_INFO_SUCCESS:
+        draft.loadMyInfoLoading = false;
+        draft.loadMyInfoDone = true;
+        draft.me = action.data;
+        break;
+      case LOAD_MY_INFO_FAILURE:
+        draft.loadMyInfoLoading = false;
+        draft.loadMyInfoError = action.error;
         break;
       // 로그아웃
       case LOG_OUT_REQUEST:

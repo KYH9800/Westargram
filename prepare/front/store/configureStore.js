@@ -31,9 +31,11 @@ const createStore = () => {
 };
 
 // process.env.NODE_ENV === 'development',
-export const wrapper = createWrapper(createStore, {
+const wrapper = createWrapper(createStore, {
   debug: process.env.NODE_ENV !== 'development',
 });
+
+export default wrapper;
 
 /*
 const enhancer =

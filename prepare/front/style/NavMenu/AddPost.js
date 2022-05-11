@@ -21,7 +21,6 @@ export const AddPostWrapper = styled.div`
     position: relative;
     top: 84px;
     margin: 0 auto;
-    width: 80%;
     max-width: 1169px;
     /* height: 873px; */
     background-color: #fff;
@@ -38,22 +37,30 @@ export const AddPostWrapper = styled.div`
     border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
   }
 
-  #add-post-title > a {
+  #add-post-title > button {
     position: absolute;
     right: 16px;
+    cursor: pointer;
+    border: 0;
+    background-color: #fff;
+    color: #0095f6;
     font-size: 14px;
     font-weight: 600;
   }
 
+  #add-post-title > button:active {
+    color: #4db9ff;
+  }
+
   #add-post-wrapper {
-    display: inline-flex;
+    display: flex;
   }
 
   #add-post-img {
     user-select: none;
     text-align: center;
-    margin-top: 29%;
-    margin-bottom: 29%;
+    margin-top: 28%;
+    margin-bottom: 31%;
     width: 830px;
     /* height: 873px; */
     p {
@@ -77,6 +84,7 @@ export const AddPostWrapper = styled.div`
 
   #add-post-text-box {
     position: relative;
+    width: 338px;
     border-left: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
   }
 
@@ -92,7 +100,7 @@ export const AddPostWrapper = styled.div`
   }
 
   #add-post-text-box .addPost-textarea {
-    width: 307px;
+    width: 91%; // 307px;
     height: 168px;
     margin: 0 15px;
     border: none;

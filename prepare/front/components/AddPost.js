@@ -1,7 +1,6 @@
 import React from 'react';
-// antd
+// antd, CSS
 import { Avatar } from 'antd';
-// CSS
 import { AddPostWrapper } from '../style/NavMenu/AddPost';
 // custom hooks
 import useInput from '../hooks/useInput';
@@ -13,8 +12,9 @@ const AddPost = ({ setAddPostToggle }) => {
     setAddPostToggle((prevState) => !prevState);
   };
 
-  const onLimitAlert = () => {
-    alert('글자 제한수가 넘었습니다.');
+  const onClickSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit');
   };
 
   return (
@@ -50,10 +50,10 @@ const AddPost = ({ setAddPostToggle }) => {
         </svg>
       </div>
       <h3 className="blind">게시글 작성 Box</h3>
-      <div id="add-post-box-wrapper">
+      <form id="add-post-box-wrapper" type="submit" onSubmit={onClickSubmit}>
         <div id="add-post-title">
           <span>새 게시물 만들기</span>
-          <a>공유하기</a>
+          <button type="submit">공유하기</button>
         </div>
         <div id="add-post-wrapper">
           {/* 이미지가 있으면 이미지로 대체 */}
@@ -78,7 +78,7 @@ const AddPost = ({ setAddPostToggle }) => {
                 fill="currentColor"></path>
             </svg>
             <p>사진과 동영상을 여기에 끌어다 놓으세요</p>
-            <button>컴퓨터에서 선택</button>
+            <button type="button">컴퓨터에서 선택</button>
           </div>
           <div id="add-post-text-box">
             <div id="addPost-user-info">
@@ -92,7 +92,7 @@ const AddPost = ({ setAddPostToggle }) => {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </AddPostWrapper>
   );
 };

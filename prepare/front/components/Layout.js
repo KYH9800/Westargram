@@ -2,7 +2,9 @@ import React from 'react';
 // components
 import NavBar from './NavBar';
 // CSS
-import styled, { GlobalStyle } from '../style/Layout';
+import { GlobalStyle } from '../style/Layout';
+// component
+import AddPost from './AddPost';
 
 const Layout = ({ children }) => {
   return (

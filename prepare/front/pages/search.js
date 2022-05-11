@@ -6,7 +6,7 @@ import axios from 'axios';
 import { END } from 'redux-saga';
 import wrapper from '../store/configureStore';
 // components
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 // redux
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 

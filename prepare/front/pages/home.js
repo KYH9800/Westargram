@@ -8,7 +8,7 @@ import wrapper from '../store/configureStore';
 // CSS
 import { MainWrapper } from '../style/index';
 // components
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import ShortsForm from '../components/ShortsForm';
 import PostCard from '../components/PostCard';
 import UserInfo from '../components/UserInfo';

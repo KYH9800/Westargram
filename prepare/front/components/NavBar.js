@@ -7,6 +7,7 @@ import { Wrapper } from '../style/NavBar';
 import { Avatar } from 'antd';
 // components
 import Activity from './NavMenu/Activity';
+import AddPost from './AddPost';
 // redux
 import { LOG_OUT_REQUEST } from '../reducers/user';
 
@@ -15,19 +16,29 @@ const NavBar = () => {
 
   const [userToggle, setUserToggle] = useState(false);
   const [heartToggle, setHeartUserToggle] = useState(false);
+  const [addPostToggle, setAddPostToggle] = useState(false);
+  // console.log('addPostToggle:', addPostToggle);
 
   useEffect(() => {
     // todo
   }, []);
 
+  // 게시글 작성
+  const addPostToggleClick = () => {
+    setAddPostToggle((prevState) => !prevState);
+  };
+
+  // 활동피드(Heart-Icon)
   const onHeartToggleClick = () => {
     setHeartUserToggle((prevState) => !prevState);
   };
 
+  // 내 프로필, 설정, 계정전환, 로그아웃
   const onUserToggleClick = () => {
     setUserToggle((prevState) => !prevState);
   };
 
+  // 로그아웃
   const onClickLogout = useCallback(() => {
     dispatch({
       type: LOG_OUT_REQUEST,
@@ -134,7 +145,7 @@ const NavBar = () => {
               </a>
             </Link>
             <h4 className="blind">새로운 게시물</h4>
-            <a id="menu-list-item">
+            <a id="menu-list-item" onClick={addPostToggleClick}>
               <svg
                 aria-label="새로운 게시물"
                 className="_8-yf5 "
@@ -343,6 +354,7 @@ const NavBar = () => {
           </div>
         </nav>
       </div>
+      {addPostToggle ? <AddPost setAddPostToggle={setAddPostToggle} /> : null}
     </Wrapper>
   );
 };

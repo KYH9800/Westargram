@@ -19,10 +19,10 @@ export const AddPostWrapper = styled.div`
 
   #add-post-box-wrapper {
     position: relative;
-    top: 84px;
+    top: 7%;
     margin: 0 auto;
-    max-width: 1169px;
-    /* height: 873px; */
+    max-width: 1168px; // 80%;
+    max-height: 87%;
     background-color: #fff;
     border-radius: 15px;
   }
@@ -54,15 +54,14 @@ export const AddPostWrapper = styled.div`
 
   #add-post-wrapper {
     display: flex;
+    height: 80vh;
   }
 
   #add-post-img {
+    position: relative;
     user-select: none;
     text-align: center;
-    margin-top: 28%;
-    margin-bottom: 31%;
-    width: 830px;
-    /* height: 873px; */
+    width: 71%;
     p {
       font-size: 22px;
       font-weight: 300;
@@ -80,6 +79,13 @@ export const AddPostWrapper = styled.div`
     button:active {
       background-color: #66c3ff;
     }
+  }
+
+  #addImg-Icon-btn {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 35%;
   }
 
   #add-post-text-box {

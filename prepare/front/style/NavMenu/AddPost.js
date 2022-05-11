@@ -108,4 +108,13 @@ export const AddPostWrapper = styled.div`
     font-size: 12px;
     font-weight: 400;
   }
+
+  #addPost-img-list {
+    border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    h2 {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 5px 17px;
+    }
+  }
 `;

@@ -87,6 +87,9 @@ const AddPost = ({ setAddPostToggle }) => {
             </div>
             <textarea className="addPost-textarea" value={text} onChange={onChangeText} placeholder="문구 입력..." />
             <div className="limit-text-info">{text.length}/2,200</div>
+            <div id="addPost-img-list">
+              <h2>이미지 목록</h2>
+            </div>
           </div>
         </div>
       </div>

@@ -78,7 +78,7 @@ export const PostCardEntryWrapper = styled.div`
   }
 
   //* content-img
-  #post-img-wrapper .post-img {
+  #post-img-wrapper {
     max-width: 611.99px;
   }
 
@@ -97,7 +97,7 @@ export const PostCardEntryWrapper = styled.div`
 
   #icon-wrapper .like svg {
     cursor: pointer;
-  } // todo: 좋아요 hover 색변환 주기 !!
+  }
 
   #icon-wrapper .comment {
     padding: 8px;
@@ -177,6 +177,10 @@ export const PostCardEntryWrapper = styled.div`
     margin-right: 7px;
     font-weight: 600;
     color: black;
+  }
+
+  #user-info-content-wrapper .user-content {
+    width: 570px;
   }
 
   // 댓글 개수 모두보기

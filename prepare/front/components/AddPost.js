@@ -1,11 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 // antd, CSS
 import { Avatar } from 'antd';
 import { AddPostWrapper } from '../style/NavMenu/AddPost';
 // custom hooks
 import useInput from '../hooks/useInput';
+// redux
+import { ADD_POST_REQUEST } from '../reducers/post';
 
 const AddPost = ({ setAddPostToggle }) => {
+  const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput('');
 
   const addPostToggleClick = () => {
@@ -14,7 +18,10 @@ const AddPost = ({ setAddPostToggle }) => {
 
   const onClickSubmit = (e) => {
     e.preventDefault();
-    console.log('submit');
+    dispatch({
+      type: ADD_POST_REQUEST,
+      data: { text },
+    });
   };
 
   return (

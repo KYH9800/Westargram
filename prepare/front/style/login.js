@@ -99,7 +99,9 @@ export const LoginWrapper = styled.div`
     cursor: pointer;
     user-select: none;
     color: #0095f6;
-    margin-bottom: 20px;
+    margin: 14px 40%; // margin-bottom: 20px;
+    padding: 5px;
+
     // position
     position: absolute;
     left: 0;

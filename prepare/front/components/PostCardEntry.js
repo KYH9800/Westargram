@@ -4,8 +4,11 @@ import { PostCardEntryWrapper } from '../style/PostCard';
 // antd
 import { EllipsisOutlined, SmileOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
+// components
+import PostImages from './PostImages';
 
-const PostCardEntry = () => {
+const PostCardEntry = ({ post }) => {
+  // console.log('post proops in PostCardEntry:', post); // 받아온 이미지
   const [liked, setLiked] = useState(false);
 
   const onLike = () => {
@@ -21,15 +24,16 @@ const PostCardEntry = () => {
   return (
     <PostCardEntryWrapper>
       <div id="post-box">
+        <h3 className="blind">게시글 머리</h3>
         <div id="post-header-wrapper">
           <div className="header-left">
             <div className="user-icon">
               <a>
-                <Avatar id="avatar" src={<img className="user-img" src="/images/self.png" />} />
+                <Avatar id="avatar" src={<img className="user-img" src={post.Images[0].src} />} />
               </a>
             </div>
             <div className="userId">
-              <span>clean_0828</span>
+              <span>{post.User.nickname}</span>
             </div>
           </div>
           <div className="header-right">
@@ -39,11 +43,13 @@ const PostCardEntry = () => {
           </div>
         </div>
 
+        <h3 className="blind">게시글 이미지</h3>
         <div id="post-img-wrapper">
-          <img className="post-img" src="/images/커피.png" alt="게시글 이미지" />
+          <PostImages imagePaths={post.Images} />
         </div>
 
         <div id="icon-wrapper">
+          <h3 className="blind">좋아요 버튼</h3>
           <div className="like">
             {liked ? (
               <svg
@@ -70,6 +76,7 @@ const PostCardEntry = () => {
             )}
           </div>
 
+          <h3 className="blind">댓글 버튼</h3>
           <div className="comment">
             <svg className="comment-icon" style={{ height: '24px', width: '24px' }}>
               <path
@@ -80,6 +87,7 @@ const PostCardEntry = () => {
             </svg>
           </div>
 
+          <h3 className="blind">공유하기 버튼</h3>
           <div className="share">
             <svg
               className="content-share-icon"
@@ -101,6 +109,8 @@ const PostCardEntry = () => {
                 points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"></polygon>
             </svg>
           </div>
+
+          <h3 className="blind">게시글 저장하기 버튼</h3>
           <div className="save-post">
             <svg className="save-post-icon" style={{ color: '#262626', fill: '#262626', height: '24', width: '24' }}>
               <polygon
@@ -116,6 +126,7 @@ const PostCardEntry = () => {
           </div>
         </div>
 
+        <h3 className="blind">좋아요 갯수</h3>
         <div id="post-content-wrapper">
           <div id="like-count-wrapper">
             <a>
@@ -124,23 +135,37 @@ const PostCardEntry = () => {
           </div>
 
           <div id="user-info-content-wrapper">
+            <h3 className="blind">작성자 아이디</h3>
             <span className="user-info">
-              <a href="">clean_0828</a>
+              <a href="">{post.User.nickname}</a>
             </span>
-            <span className="user-content">이것은 테스트 게시글 입니다.</span>
+            <h3 className="blind">게시글 내용</h3>
+            <div className="user-content">
+              {post.content.split('\n').map((line, i) => {
+                return (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                );
+              })}
+            </div>
           </div>
 
+          <h3 className="blind">댓글 모두 보기</h3>
           <div id="comment-count-wrapper">
             <a>
               댓글 <span className="comment-count">1,340</span>개 모두 보기
             </a>
           </div>
 
+          <h3 className="blind">작성된 날짜</h3>
           <div id="momment-wrapper">
             <span>1일 전</span>
           </div>
         </div>
 
+        <h3 className="blind">댓글 Input 창</h3>
         <div id="comment-form-wrapper">
           <div className="comment-icon">
             <SmileOutlined />

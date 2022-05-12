@@ -4,17 +4,14 @@ import { PostCardWrapper } from '../style/PostCard';
 // componenets
 import PostCardEntry from './PostCardEntry';
 
-const PostCard = () => {
+const PostCard = ({ posts }) => {
+  console.log('posts:', posts);
   return (
     <PostCardWrapper>
       <div id="post-box-empty"></div>
-      <PostCardEntry />
-      <PostCardEntry />
-      <PostCardEntry />
-      <PostCardEntry />
-      <PostCardEntry />
-      <PostCardEntry />
-      <PostCardEntry />
+      {posts.map((post) => (
+        <PostCardEntry key={post.id} post={post} />
+      ))}
     </PostCardWrapper>
   );
 };

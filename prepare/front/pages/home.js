@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 // getServerSideProps
 import axios from 'axios';
@@ -14,10 +14,14 @@ import PostCard from '../components/PostCard';
 import UserInfo from '../components/UserInfo';
 // redux
 import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
+import { LOAD_POSTS_REQUEST } from '../reducers/post';
 
 const Home = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
+  // useSelector
   const { me } = useSelector((state) => state.user);
+  const { mainPosts } = useSelector((state) => state.post);
 
   useEffect(() => {
     if (!me) {
@@ -25,6 +29,13 @@ const Home = () => {
       router.push('/');
     }
   }, [me]);
+
+  //! test load posts
+  useEffect(() => {
+    dispatch({
+      type: LOAD_POSTS_REQUEST,
+    });
+  }, []);
 
   return (
     <Layout>
@@ -36,7 +47,7 @@ const Home = () => {
                 <ShortsForm />
               </div>
               <div className="post-card">
-                <PostCard />
+                <PostCard posts={mainPosts} />
               </div>
             </section>
             <div id="user-info-wrapper">

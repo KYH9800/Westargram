@@ -4,7 +4,7 @@ import { ShortsFormWrapper, StyledSlider } from '../style/ShortsForm';
 // components
 import ShortsAvatar from './ShortsAvatar';
 
-const ShortsForm = (props) => {
+const ShortsForm = () => {
   const settings = {
     dots: false,
     infinite: false,

@@ -137,6 +137,8 @@ const reducer = (state = initialState, action) =>
         draft.signUpDone = false;
         draft.signUpError = null;
         break;
+      default:
+        break;
     }
   });
 

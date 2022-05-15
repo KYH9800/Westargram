@@ -21,7 +21,7 @@ const Home = () => {
   const router = useRouter();
   // useSelector
   const { me } = useSelector((state) => state.user);
-  const { mainPosts } = useSelector((state) => state.post);
+  const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector((state) => state.post);
 
   useEffect(() => {
     if (!me) {
@@ -30,12 +30,26 @@ const Home = () => {
     }
   }, [me]);
 
-  //! test load posts
+  // 무한 스크롤
   useEffect(() => {
-    dispatch({
-      type: LOAD_POSTS_REQUEST,
-    });
-  }, []);
+    // comopnentDidMount()
+    function onScroll() {
+      if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
+        if (hasMorePosts && !loadPostsLoading) {
+          const lastId = mainPosts[mainPosts.length - 1]?.id;
+          dispatch({
+            type: LOAD_POSTS_REQUEST,
+            lastId,
+          });
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    // componentWillUnmount()
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [hasMorePosts, loadPostsLoading, mainPosts]);
 
   return (
     <Layout>
@@ -47,7 +61,7 @@ const Home = () => {
                 <ShortsForm />
               </div>
               <div className="post-card">
-                <PostCard posts={mainPosts} />
+                <PostCard />
               </div>
             </section>
             <div id="user-info-wrapper">
@@ -71,6 +85,9 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
   store.dispatch({
     type: LOAD_MY_INFO_REQUEST, // user
+  });
+  store.dispatch({
+    type: LOAD_POSTS_REQUEST, // post
   });
   store.dispatch(END);
   await store.sagaTask.toPromise();

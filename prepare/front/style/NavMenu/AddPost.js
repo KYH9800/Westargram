@@ -88,6 +88,19 @@ export const AddPostWrapper = styled.div`
     top: 35%;
   }
 
+  #add-img-box-wrapper {
+    width: 829px;
+    height: 790px; // 839
+    vertical-align: middle;
+    img {
+      margin: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+    }
+  }
+
   #add-post-text-box {
     position: relative;
     width: 338px;
@@ -131,4 +144,76 @@ export const AddPostWrapper = styled.div`
       margin: 5px 17px;
     }
   }
+
+  #img-list-box {
+    height: 513px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #remove-img-btn-wrapper {
+    position: relative;
+  }
+
+  #remove-img-btn-wrapper img {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+  }
+
+  #remove-img-btn {
+    display: block;
+    text-align: end;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #000000cc;
+    padding-right: 4%;
+    padding-left: 4%;
+    // 삭제 버튼
+    svg:hover {
+      color: red;
+    }
+  }
+
+  #img-num {
+    padding-left: 4%;
+    line-height: 33px;
+    float: left;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  // react-slick prev btn, react-slick next btn
+  .slick-arrow.slick-prev,
+  .slick-arrow.slick-next {
+    cursor: pointer;
+    // position
+    position: absolute;
+    top: 50%;
+    // custom
+    line-height: 0%;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: black;
+    border-radius: 50%;
+    padding: 0px;
+    border: none;
+    outline: none;
+    margin: 0 33px;
+    z-index: 1;
+  }
+
+  /* #add-post-img .slick-arrow.slick-next,
+  #add-post-img .slick-arrow.slick-prev {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff0;
+    background-color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px 9px;
+  } */
 `;

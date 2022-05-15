@@ -12,6 +12,11 @@ export const generateDummyPost = (number) =>
       User: {
         id: 1, // shortId.generate(),
         nickname: faker.name.findName(),
+        userImageSrc: [
+          {
+            src: faker.image.image(),
+          },
+        ],
       },
       content: faker.lorem.paragraph(),
       Images: [
@@ -50,6 +55,10 @@ export const initialState = {
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
+  // 이미지 업로드
+  uploadImagesLoading: false,
+  uploadImagesDone: false,
+  uploadImagesError: null,
 };
 
 /* action 정의, action 함수 정의 */
@@ -61,6 +70,15 @@ export const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
+// 상태 리셋
+export const ADD_POST_STATE_RESET = 'ADD_POST_STATE_RESET';
+// 이미지 업로드, UPLOAD_IMAGES
+export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
+export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
+export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
+// 이미지 제거, REMOVE_IMAGE
+export const REMOVE_IMAGE = 'REMOVE_IMAGE';
+export const REMOVE_ALL_IMAGE = 'REMOVE_ALL_IMAGE';
 
 // reducer
 const reducer = (state = initialState, action) =>
@@ -75,8 +93,8 @@ const reducer = (state = initialState, action) =>
       case LOAD_POSTS_SUCCESS:
         draft.loadPostsLoading = false;
         draft.loadPostsDone = true;
-        draft.mainPosts = action.data.concat(draft.mainPosts); // 기존 data + dummy 10개
-        draft.hasMorePosts = draft.mainPosts.length < 50; // 50개 보다 많아지면 false
+        draft.mainPosts = draft.mainPosts.concat(action.data); // 기존 data + dummy 10개
+        draft.hasMorePosts = action.data.length === 10; // 10개의 게시글을 불러온다
         break;
       case LOAD_POSTS_FAILURE:
         draft.loadPostsLoading = false;
@@ -91,13 +109,37 @@ const reducer = (state = initialState, action) =>
       case ADD_POST_SUCCESS:
         draft.addPostLoading = false;
         draft.addPostDone = true;
-        // todo: 성공한 데이터 담기
         draft.mainPosts.unshift(action.data);
         draft.imagePaths = [];
         break;
       case ADD_POST_FAILURE:
         draft.addPostLoading = false;
         draft.addPostError = action.error;
+        break;
+      case ADD_POST_STATE_RESET:
+        draft.addPostDone = false;
+      //* 이미지 업로드
+      case UPLOAD_IMAGES_REQUEST:
+        draft.uploadImagesLoading = true;
+        draft.uploadImagesDone = false;
+        draft.uploadImagesError = null;
+        break;
+      case UPLOAD_IMAGES_SUCCESS: {
+        draft.uploadImagesLoading = false;
+        draft.uploadImagesDone = true;
+        draft.imagePaths = draft.imagePaths.concat(action.data);
+        break;
+      }
+      case UPLOAD_IMAGES_FAILURE:
+        draft.uploadImagesLoading = false;
+        draft.uploadImagesError = action.error;
+        break;
+      //* 이미지 제거
+      case REMOVE_ALL_IMAGE:
+        draft.imagePaths = []; // 이미지 전부 제거
+        break;
+      case REMOVE_IMAGE: // 이미지는 서버에서 잘 안지운다(자원이라서), 때문에 case가 한개
+        draft.imagePaths = draft.imagePaths.filter((v, i) => i !== action.data);
         break;
       default:
         break;

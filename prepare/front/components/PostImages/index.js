@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 // CSS
 import { PostImagesWrapper } from './styles';
+// component
+import { backURL } from '../../config/config';
 
 // image가 1개 이상이면 react-slick을 적용한다.
 // if(imagePaths.length > 1) { return ... };
 // 사진을 넘겨볼수 있게 한다.
 const PostImages = ({ imagePaths }) => {
+  console.log('이미지패스:', imagePaths);
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -23,7 +26,7 @@ const PostImages = ({ imagePaths }) => {
         <Slider {...settings}>
           {imagePaths.map((image, idx) => {
             console.log('image:', image);
-            return <img id="post-img" key={idx} src={image.src} alt="게시글 이미지" />;
+            return <img id="post-img" key={idx} src={`${backURL}/${image.src}`} alt="게시글 이미지" />;
           })}
         </Slider>
       </PostImagesWrapper>
@@ -32,7 +35,7 @@ const PostImages = ({ imagePaths }) => {
   } else {
     return (
       <PostImagesWrapper>
-        <img id="post-img" src={imagePaths[0].src} alt="게시글 이미지" />
+        <img id="post-img" src={`${backURL}/${imagePaths[0].src}`} alt="게시글 이미지" />
       </PostImagesWrapper>
     );
   }

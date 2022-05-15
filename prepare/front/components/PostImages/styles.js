@@ -21,7 +21,7 @@ export const PostImagesWrapper = styled.div`
   }
 
   #post-img {
-    max-width: 100%;
+    width: 100%;
   }
 `;
 

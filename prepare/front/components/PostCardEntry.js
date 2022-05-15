@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 // CSS
 import { PostCardEntryWrapper } from '../style/PostCard';
 // antd
-import { EllipsisOutlined, SmileOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 // components
 import PostImages from './PostImages';
 
+// props: mainPosts in postCard.js
 const PostCardEntry = ({ post }) => {
-  // console.log('post proops in PostCardEntry:', post); // 받아온 이미지
+  console.log('post proops:', post); // 받아온 props
   const [liked, setLiked] = useState(false);
 
   const onLike = () => {
@@ -29,11 +30,15 @@ const PostCardEntry = ({ post }) => {
           <div className="header-left">
             <div className="user-icon">
               <a>
-                <Avatar id="avatar" src={<img className="user-img" src={post.Images[0].src} />} />
+                {post.User.userImageSrc ? (
+                  <Avatar id="avatar" size={32} src={<img className="user-img" src={post.User.userImageSrc[0]} />} />
+                ) : (
+                  <Avatar size={32} icon={<UserOutlined />} />
+                )}
               </a>
             </div>
             <div className="userId">
-              <span>{post.User.nickname}</span>
+              <span>{post.User.userIdName}</span>
             </div>
           </div>
           <div className="header-right">
@@ -137,7 +142,7 @@ const PostCardEntry = ({ post }) => {
           <div id="user-info-content-wrapper">
             <h3 className="blind">작성자 아이디</h3>
             <span className="user-info">
-              <a href="">{post.User.nickname}</a>
+              <a href="">{post.User.userIdName}</a>
             </span>
             <h3 className="blind">게시글 내용</h3>
             <div className="user-content">

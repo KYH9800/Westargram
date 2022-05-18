@@ -6,11 +6,9 @@ import { PostImagesWrapper } from './styles';
 // component
 import { backURL } from '../../config/config';
 
-// image가 1개 이상이면 react-slick을 적용한다.
-// if(imagePaths.length > 1) { return ... };
-// 사진을 넘겨볼수 있게 한다.
+// imagePaths in PostCardEntry, post.Images
 const PostImages = ({ imagePaths }) => {
-  console.log('이미지패스:', imagePaths);
+  // console.log('이미지패스:', imagePaths);
   const settings = {
     dots: true,
     infinite: false,
@@ -25,7 +23,7 @@ const PostImages = ({ imagePaths }) => {
       <PostImagesWrapper>
         <Slider {...settings}>
           {imagePaths.map((image, idx) => {
-            console.log('image:', image);
+            // console.log('image:', image);
             return <img id="post-img" key={idx} src={`${backURL}/${image.src}`} alt="게시글 이미지" />;
           })}
         </Slider>

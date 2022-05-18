@@ -7,6 +7,7 @@ import PostCardEntry from './PostCardEntry';
 
 const PostCard = () => {
   const { mainPosts } = useSelector((state) => state.post);
+  console.log('mainPosts:', mainPosts);
 
   return (
     <PostCardWrapper>

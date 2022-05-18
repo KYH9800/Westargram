@@ -46,6 +46,7 @@ export const initialState = {
   mainPosts: [], // Dummy Data
   singlePost: null, // 게시글 하나만 불러올때
   imagePaths: [], // 이미지 업로드 할 때 이미지 경로들이 여기에 저장
+  userProfileImage: [],
   hasMorePosts: true, // 가져오려는 시도
   // 게시글을 불러올때(무한 스크롤)
   loadPostsLoading: false,
@@ -59,6 +60,10 @@ export const initialState = {
   uploadImagesLoading: false,
   uploadImagesDone: false,
   uploadImagesError: null,
+  // 사용자 프로필 이미지 업로드
+  uploadUserProfileImagesLoading: false,
+  uploadUserProfileImagesDone: false,
+  uploadUserProfileImagesError: null,
 };
 
 /* action 정의, action 함수 정의 */
@@ -76,6 +81,10 @@ export const ADD_POST_STATE_RESET = 'ADD_POST_STATE_RESET';
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
 export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
 export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
+// 사용자 이미지 업로드
+export const UPLOAD_USER_PROFILE_IMAGES_REQUEST = 'UPLOAD_USER_PROFILE_IMAGES_REQUEST';
+export const UPLOAD_USER_PROFILE_IMAGES_SUCCESS = 'UPLOAD_USER_PROFILE_IMAGES_SUCCESS';
+export const UPLOAD_USER_PROFILE_IMAGES_FAILURE = 'UPLOAD_USER_PROFILE_IMAGES_FAILURE';
 // 이미지 제거, REMOVE_IMAGE
 export const REMOVE_IMAGE = 'REMOVE_IMAGE';
 export const REMOVE_ALL_IMAGE = 'REMOVE_ALL_IMAGE';
@@ -140,6 +149,22 @@ const reducer = (state = initialState, action) =>
         break;
       case REMOVE_IMAGE: // 이미지는 서버에서 잘 안지운다(자원이라서), 때문에 case가 한개
         draft.imagePaths = draft.imagePaths.filter((v, i) => i !== action.data);
+        break;
+      //* 사용자 프로필 이미지 업로드
+      case UPLOAD_USER_PROFILE_IMAGES_REQUEST:
+        draft.uploadUserProfileImagesLoading = true;
+        draft.uploadUserProfileImagesDone = false;
+        draft.uploadUserProfileImagesError = null;
+        break;
+      case UPLOAD_USER_PROFILE_IMAGES_SUCCESS: {
+        draft.uploadUserProfileImagesLoading = false;
+        draft.uploadUserProfileImagesDone = true;
+        draft.userProfileImage = draft.userProfileImage.concat(action.data);
+        break;
+      }
+      case UPLOAD_USER_PROFILE_IMAGES_FAILURE:
+        draft.uploadUserProfileImagesLoading = false;
+        draft.uploadUserProfileImagesError = action.error;
         break;
       default:
         break;

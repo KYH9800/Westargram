@@ -26,6 +26,10 @@ const Profile = () => {
     }
   }, [me]);
 
+  const onClickEditRouter = () => {
+    router.push('/userProfileEdit');
+  };
+
   return (
     <Layout>
       <ProfileWrapper>
@@ -40,7 +44,9 @@ const Profile = () => {
                 <div id="mobile-profile-user-info">
                   <div className="profile-title">
                     <h1>kyh0506_</h1>
-                    <button className="profile-edit-btn">프로필 편집</button>
+                    <button className="profile-edit-btn" onClick={onClickEditRouter}>
+                      프로필 편집
+                    </button>
                     <div>
                       <h2 className="blind">option-icon</h2>
                       <a>
@@ -71,7 +77,9 @@ const Profile = () => {
                       </a>
                     </div>
                   </div>
-                  <button id="profile-mobile-edit-btn">프로필 편집</button>
+                  <button id="profile-mobile-edit-btn" onClick={onClickEditRouter}>
+                    프로필 편집
+                  </button>
                 </div>
 
                 <div className="mobile-profile-user-name">

@@ -9,7 +9,7 @@ import PostImages from './PostImages';
 
 // props: mainPosts in postCard.js
 const PostCardEntry = ({ post }) => {
-  console.log('post proops:', post); // 받아온 props
+  // console.log('post proops:', post); // 받아온 props
   const [liked, setLiked] = useState(false);
 
   const onLike = () => {
@@ -30,8 +30,12 @@ const PostCardEntry = ({ post }) => {
           <div className="header-left">
             <div className="user-icon">
               <a>
-                {post.User.userImageSrc ? (
-                  <Avatar id="avatar" size={32} src={<img className="user-img" src={post.User.userImageSrc[0]} />} />
+                {post.User.UserProfileImage ? (
+                  <Avatar
+                    id="avatar"
+                    size={32}
+                    src={<img className="user-img" src={post.User.UserProfileImage[0]} />}
+                  />
                 ) : (
                   <Avatar size={32} icon={<UserOutlined />} />
                 )}

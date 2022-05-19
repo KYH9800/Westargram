@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const UserProfileEditWrapper = styled.div`
+  position: relative;
+
   #userProfile-edit-wrapper {
     display: inline-flex;
     margin: 30px auto;
@@ -79,5 +81,84 @@ export const UserProfileEditWrapper = styled.div`
   #change-user-info-wrapper {
     background-color: #fff;
     width: 695px;
+  }
+
+  // madal 창, user의 성별
+  #user-sex-input-wrapper {
+    z-index: 100;
+    background-color: #000000d9;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    width: 100%;
+    height: 100%;
+  }
+
+  #sex-modal-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  }
+
+  #sex-box {
+    position: relative;
+    top: 300px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 548px;
+    height: 235px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  #sex-box .user-sex-check-box {
+    width: 450px;
+    margin: 25px auto;
+    // 버튼, 남성 vs 여성
+    button {
+      cursor: pointer;
+      display: block;
+      margin: 2px 0;
+      border: 0;
+      border-radius: 5px;
+      width: 100%;
+      height: 35px;
+      background-color: #1890ff; // #1890ff
+      color: #fff;
+      font-weight: 500;
+    }
+    button:hover {
+      background-color: #47a7ff;
+    }
+    button:active {
+      background-color: #1890ff;
+    }
+    // 취소버튼
+    .cencle {
+      background-color: #fff;
+      color: red;
+      font-weight: 500;
+      border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    }
+    .cencle:hover {
+      background-color: #dcdcdc;
+    }
+    .cencle:active {
+      background-color: #fff;
+    }
+  }
+
+  #sex-box svg {
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    right: 7px;
+    width: 25px;
+    height: 25px;
   }
 `;

@@ -18,6 +18,12 @@ import {
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
   LOAD_MY_INFO_FAILURE,
+  USER_PROFILE_CHANGE_REQUEST,
+  USER_PROFILE_CHANGE_SUCCESS,
+  USER_PROFILE_CHANGE_FAILURE,
+  USER_INFO_CHANGE_REQUEST,
+  USER_INFO_CHANGE_SUCCESS,
+  USER_INFO_CHANGE_FAILURE,
 } from '../reducers/user';
 
 // signup
@@ -131,6 +137,50 @@ function* logout(action) {
   }
 }
 
+//* 유저 정보 변경, user in model
+function changeUserAPI(data) {
+  console.log('이거 어떻게 받아오는지 봐라:', data);
+  return axios.patch('/user/userProfile', data);
+}
+
+function* changeUser(action) {
+  try {
+    // api 통신할때는 call(동기)
+    const result = yield call(changeUserAPI, action.data);
+    yield put({
+      type: USER_PROFILE_CHANGE_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: USER_PROFILE_CHANGE_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+//* 유저 정보 변경, userInfo in model
+function changeUserInfoAPI(data) {
+  console.log('이거 어떻게 받아오는지 봐라2:', data);
+  return axios.patch('/user/userInfo', data);
+}
+
+function* changeUserInfo(action) {
+  try {
+    // api 통신할때는 call(동기)
+    console.log('이거 어떻게 받아오는지 봐라3:', action.data);
+    const result = yield call(changeUserInfoAPI, action.data);
+    yield put({
+      type: USER_INFO_CHANGE_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: USER_INFO_CHANGE_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchSignup() {
   yield takeLatest(SIGN_UP_REQUEST, signup);
 }
@@ -151,6 +201,14 @@ function* watchLoadMyInfo() {
   yield takeLatest(LOAD_MY_INFO_REQUEST, loadMyInfo);
 }
 
+function* watchChangeUser() {
+  yield takeLatest(USER_PROFILE_CHANGE_REQUEST, changeUser);
+}
+
+function* watchChangeUserInfo() {
+  yield takeLatest(USER_INFO_CHANGE_REQUEST, changeUserInfo);
+}
+
 export default function* userSaga() {
   yield all([
     fork(watchSignup),
@@ -158,5 +216,7 @@ export default function* userSaga() {
     fork(watchLogin),
     fork(watchLogout),
     fork(watchLoadMyInfo),
+    fork(watchChangeUser),
+    fork(watchChangeUserInfo),
   ]);
 }

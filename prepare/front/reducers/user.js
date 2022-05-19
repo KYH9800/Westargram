@@ -23,6 +23,10 @@ export const initialState = {
   userIdNameCheckDone: false,
   userIdNameCheckError: null,
   resultUserIdName: null,
+  // 유저 정보 변경
+  userInfoChangeLoading: false,
+  userInfoChangeDone: false,
+  userInfoChangeError: null,
   // 내 로그인 정보
   me: null,
   // user 정보
@@ -52,12 +56,20 @@ export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE';
 export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
+// 유저 name, userIdName 변경
+export const USER_PROFILE_CHANGE_REQUEST = 'USER_PROFILE_CHANGE_REQUEST'; // user in model
+export const USER_PROFILE_CHANGE_SUCCESS = 'USER_PROFILE_CHANGE_SUCCESS';
+export const USER_PROFILE_CHANGE_FAILURE = 'USER_PROFILE_CHANGE_FAILURE';
+// 유저정보 webSite, introduce ,userEmail, phoneNum 변경
+export const USER_INFO_CHANGE_REQUEST = 'USER_INFO_CHANGE_REQUEST'; // userInfo in model
+export const USER_INFO_CHANGE_SUCCESS = 'USER_INFO_CHANGE_SUCCESS';
+export const USER_INFO_CHANGE_FAILURE = 'USER_INFO_CHANGE_FAILURE';
 
 // reducer
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      // 로그인
+      //* 로그인
       case LOG_IN_REQUEST:
         draft.logInLoading = true;
         draft.logInDone = false;
@@ -72,7 +84,7 @@ const reducer = (state = initialState, action) =>
         draft.logInLoading = false;
         draft.logInError = action.error;
         break;
-      // 내 로그인 정보 불러오기
+      //* 내 로그인 정보 불러오기
       case LOAD_MY_INFO_REQUEST:
         draft.loadMyInfoLoading = true;
         draft.loadMyInfoDone = false;
@@ -87,7 +99,7 @@ const reducer = (state = initialState, action) =>
         draft.loadMyInfoLoading = false;
         draft.loadMyInfoError = action.error;
         break;
-      // 로그아웃
+      //* 로그아웃
       case LOG_OUT_REQUEST:
         draft.logOutLoading = true;
         draft.logOutDone = false;
@@ -102,7 +114,7 @@ const reducer = (state = initialState, action) =>
         draft.logOutLoading = false;
         draft.logOutError = action.error;
         draft.me = null;
-      // 회원가입
+      //* 회원가입
       case SIGN_UP_REQUEST:
         draft.signUpLoading = true;
         draft.signUpDone = false;
@@ -116,7 +128,7 @@ const reducer = (state = initialState, action) =>
         draft.signUpLoading = false;
         draft.signUpError = action.error;
         break;
-      // 사용자 아이디 중복확인
+      //* 사용자 아이디 중복확인
       case USER_ID_NAME_CHECK_REQUEST:
         draft.userIdNameCheckLoading = true;
         draft.userIdNameCheckDone = false;
@@ -131,11 +143,46 @@ const reducer = (state = initialState, action) =>
         draft.userIdNameCheckLoading = false;
         draft.userIdNameCheckError = action.error;
         break;
-      // 회원가입 상태 초기화
+      //* 회원가입 상태 초기화
       case RESET_SIGN_UP_STATES:
         draft.signUpLoading = false;
         draft.signUpDone = false;
         draft.signUpError = null;
+        break;
+      //* 유저 정보 변경
+      // user in model
+      case USER_PROFILE_CHANGE_REQUEST:
+        draft.userInfoChangeLoading = true;
+        draft.userInfoChangeDone = false;
+        draft.userInfoChangeError = null;
+        break;
+      case USER_PROFILE_CHANGE_SUCCESS:
+        draft.userInfoChangeLoading = false;
+        draft.userInfoChangeDone = true;
+        // 나의 이름과 아이디를 입력한 정보로 변경
+        draft.me.name = action.data.name;
+        draft.me.userIdName = action.data.userIdName;
+        break;
+      case USER_PROFILE_CHANGE_FAILURE:
+        draft.userInfoChangeLoading = false;
+        draft.userInfoChangeError = action.error;
+        break;
+      // userInfo in model
+      case USER_INFO_CHANGE_REQUEST:
+        draft.userInfoChangeLoading = true;
+        draft.userInfoChangeDone = false;
+        draft.userInfoChangeError = null;
+        break;
+      case USER_INFO_CHANGE_SUCCESS:
+        draft.userInfoChangeLoading = false;
+        draft.userInfoChangeDone = true;
+        // 나의 userInfo를 입력한 정보로 변경
+        console.log('이거 리듀서 action.data 임:', action.data);
+        draft.me.UserInfo = action.data;
+        break;
+      case USER_INFO_CHANGE_FAILURE:
+        draft.userInfoChangeLoading = false;
+        draft.userInfoChangeError = action.error;
         break;
       default:
         break;

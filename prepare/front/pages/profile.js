@@ -113,17 +113,6 @@ const Profile = () => {
             <ProfileNav />
           </nav>
         </div>
-        <div id="user-post-wrapper">
-          {false ? (
-            <>
-              <div>게시물 있음</div>
-            </>
-          ) : (
-            <>
-              <div></div>
-            </>
-          )}
-        </div>
       </ProfileWrapper>
     </Layout>
   );

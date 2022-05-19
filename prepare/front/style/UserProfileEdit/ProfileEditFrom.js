@@ -76,7 +76,7 @@ export const ProfileEditFromWrapper = styled.div`
     width: 355px;
     height: 60px;
     outline: none;
-    padding: 0 10px;
+    padding: 5px 10px;
   }
 
   #user-info-input-wrapper > p {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AddPostWrapper = styled.div`
-  z-index: 1;
+  z-index: 100;
   position: fixed;
   top: 0;
   right: 0;

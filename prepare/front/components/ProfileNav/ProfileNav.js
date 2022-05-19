@@ -130,8 +130,9 @@ const ProfileNav = ({ Component }) => {
           <span>태그됨</span>
         </a>
       </div>
-      {/* <Component /> */}
-      <UserPost />
+      <div>
+        <UserPost />
+      </div>
     </ProfileNavWrapper>
   );
 };

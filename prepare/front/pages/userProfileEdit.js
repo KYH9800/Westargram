@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 // getServerSideProps
@@ -7,6 +7,7 @@ import { END } from 'redux-saga';
 import wrapper from '../store/configureStore';
 // CSS
 import { message } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import { UserProfileEditWrapper } from '../style/UserProfileEdit/userProfileEdit';
 // components
 import Layout from '../components/Layout';
@@ -18,6 +19,9 @@ import { LOAD_POSTS_REQUEST } from '../reducers/post';
 const UserProfileEdit = () => {
   const router = useRouter();
   const { me } = useSelector((state) => state.user);
+  // useState
+  const [onSexToggle, setOnSexToggle] = useState(false);
+  const [sex, setSex] = useState(''); // 성별
 
   const error = () => {
     message.error('아직은 지원하지 않는 서비스 입니다.');
@@ -29,6 +33,15 @@ const UserProfileEdit = () => {
       router.push('/');
     }
   }, [me]);
+
+  const onClickSex = (sexState) => () => {
+    setSex(sexState);
+    setOnSexToggle(false);
+  };
+
+  const onClickCencle = () => {
+    setOnSexToggle(false);
+  };
 
   return (
     <UserProfileEditWrapper>
@@ -121,10 +134,33 @@ const UserProfileEdit = () => {
             </div>
           </div>
           <div id="change-user-info-wrapper">
-            <ProfileEditFrom />
+            <ProfileEditFrom me={me} sex={sex} setOnSexToggle={setOnSexToggle} />
           </div>
         </div>
       </Layout>
+      {
+        // modal 창, user의 성별 선택 input box
+        onSexToggle ? (
+          <div id="user-sex-input-wrapper">
+            <div id="sex-box">
+              <div id="sex-modal-header">
+                성별
+                <span className="cencle-btn" onClick={onClickCencle}>
+                  <CloseOutlined />
+                </span>
+              </div>
+              <div className="user-sex-check-box">
+                <button onClick={onClickSex('남성')}>남성</button>
+                <button onClick={onClickSex('여성')}>여성</button>
+                <button onClick={onClickSex('비공개')}>비공개</button>
+                <button onClick={onClickCencle} className="cencle">
+                  취소
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : null
+      }
     </UserProfileEditWrapper>
   );
 };

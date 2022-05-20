@@ -21,7 +21,7 @@ const UserProfileEdit = () => {
   const { me } = useSelector((state) => state.user);
   // useState
   const [onSexToggle, setOnSexToggle] = useState(false);
-  const [sex, setSex] = useState(''); // 성별
+  const [sex, setSex] = useState(me?.UserInfo?.sex || ``); // 성별
 
   const error = () => {
     message.error('아직은 지원하지 않는 서비스 입니다.');

@@ -215,3 +215,58 @@ export const ProfileWrapper = styled.div`
     }
   }
 `;
+
+// option 아이콘, madal 창
+export const SettingModal = styled.div`
+  #setting-modal-wrapper {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    border: rgba(var(--jb7, 0, 0, 0), 0.0975);
+    background-color: #000000d9;
+  }
+
+  #modal-box {
+    position: absolute;
+    top: 280px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    align-items: center;
+  }
+
+  #setting-modal-wrapper .list-btn-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  #setting-modal-wrapper .list-btn-top,
+  #setting-modal-wrapper .list-btn,
+  #setting-modal-wrapper .list-btn-bottom {
+    cursor: pointer;
+    border-top: 1px solid #dbdbdb;
+    text-align: center;
+    width: 100%;
+    padding: 13px 0;
+    a {
+      color: black;
+    }
+    :hover {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: #eaeaea;
+    }
+    :active {
+      background-color: #fff;
+    }
+  }
+`;
+
+// width: 100%; // 48
+//     height: 100%;

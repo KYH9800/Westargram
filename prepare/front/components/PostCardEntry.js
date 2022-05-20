@@ -1,25 +1,67 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // CSS
-import { PostCardEntryWrapper } from '../style/PostCard';
+import { PostCardEntryWrapper, OptionsWrapper } from '../style/PostCard';
 // antd
-import { EllipsisOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, SmileOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 // components
 import PostImages from './PostImages';
+import UpdatePost from './UpdatePost/UpdatePost';
+// reducer
+import { REMOVE_POST_REQUEST } from '../reducers/post';
 
 // props: mainPosts in postCard.js
 const PostCardEntry = ({ post }) => {
-  // console.log('post proops:', post); // 받아온 props
+  const dispatch = useDispatch();
+  const id = useSelector((state) => state.user.me?.id);
+  const { removePostError } = useSelector((state) => state.post);
+
   const [liked, setLiked] = useState(false);
+  const [optionToggle, setOptionToggle] = useState(false);
+  const [updatePostToggle, setUpdatePostToggle] = useState(false);
 
   const onLike = () => {
     setLiked((prevState) => !prevState);
     console.log('prevState: ', liked);
   }; // onLike !== onUnLike
 
-  const onClickSubmit = (e) => {
+  // 게시글 작성, Submit
+  const onClickSubmit = useCallback((e) => {
     e.preventDefault();
     console.log('onSubmitClick');
+  }, []);
+
+  // 게시글 기능 버튼 toggle
+  const onClickOption = () => {
+    setOptionToggle((state) => !state);
+    // console.log('optionToggle:', optionToggle);
+  };
+
+  // 게시글 삭제
+  const onRemovePost = useCallback(() => {
+    if (!id) {
+      alert('로그인이 필요합니다.');
+    }
+    if (confirm('게시글을 삭제하시겠습니까?')) {
+      dispatch({
+        type: REMOVE_POST_REQUEST,
+        data: post.id,
+      });
+    }
+    if (!removePostError) {
+      setOptionToggle((state) => !state);
+    } else {
+      console.error(removePostError);
+    }
+  }, [id]);
+
+  // 게시글 수정, Toggle Button
+  const onClickPostUpdate = () => {
+    if (confirm('게시글을 수정하시겠습니까?')) {
+      setUpdatePostToggle((state) => !state);
+      setOptionToggle(false);
+    }
   };
 
   return (
@@ -47,7 +89,7 @@ const PostCardEntry = ({ post }) => {
           </div>
           <div className="header-right">
             <div className="menu-bar">
-              <EllipsisOutlined />
+              <EllipsisOutlined onClick={onClickOption} />
             </div>
           </div>
         </div>
@@ -185,6 +227,46 @@ const PostCardEntry = ({ post }) => {
           </form>
         </div>
       </div>
+      {/* 게시글 설정 버튼 */}
+      {optionToggle ? (
+        id && post.User.id === id ? (
+          <OptionsWrapper>
+            <div id="post-option-box-wrapper">
+              <div id="closeIt-btn">
+                <CloseOutlined onClick={onClickOption} />
+              </div>
+              <div className="post-option-box">
+                <button className="top" onClick={onClickPostUpdate}>
+                  수정
+                </button>
+                <button onClick={onRemovePost} style={{ color: '#ed4956', fontWeight: '600' }}>
+                  삭제
+                </button>
+                <button className="bottom" onClick={onClickOption}>
+                  취소
+                </button>
+              </div>
+            </div>
+          </OptionsWrapper>
+        ) : (
+          <OptionsWrapper>
+            <div id="post-option-box-wrapper">
+              <div id="closeIt-btn">
+                <CloseOutlined onClick={onClickOption} />
+              </div>
+              <div className="post-option-box">
+                <button className="top">신고</button>
+                <button>공유하기</button>
+                <button className="bottom" onClick={onClickOption}>
+                  취소
+                </button>
+              </div>
+            </div>
+          </OptionsWrapper>
+        )
+      ) : null}
+      {/* 게시글 업데이트 */}
+      {updatePostToggle ? <UpdatePost post={post} setUpdatePostToggle={setUpdatePostToggle} /> : null}
     </PostCardEntryWrapper>
   );
 };

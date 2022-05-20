@@ -26,16 +26,22 @@ const NavBar = () => {
   // 게시글 작성
   const addPostToggleClick = () => {
     setAddPostToggle((prevState) => !prevState);
+    setHeartUserToggle(false);
+    setUserToggle(false);
   };
 
   // 활동피드(Heart-Icon)
   const onHeartToggleClick = () => {
     setHeartUserToggle((prevState) => !prevState);
+    setAddPostToggle(false);
+    setUserToggle(false);
   };
 
   // 내 프로필, 설정, 계정전환, 로그아웃
   const onUserToggleClick = () => {
     setUserToggle((prevState) => !prevState);
+    setHeartUserToggle(false);
+    setAddPostToggle(false);
   };
 
   // 로그아웃

@@ -251,3 +251,68 @@ export const PostCardEntryWrapper = styled.div`
     color: #0095f673;
   }
 `;
+
+// option modal
+export const OptionsWrapper = styled.div`
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000d9;
+
+  #post-option-box-wrapper {
+    margin: auto;
+    width: 400px; // 48
+    background-color: #fff;
+    border-radius: 12px;
+  }
+
+  #closeIt-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  .post-option-box {
+    position: absolute;
+    top: 270px;
+    right: 0;
+    left: 0;
+    width: 400px;
+    margin: 25px auto;
+    .top {
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
+      border-top: none;
+    }
+    .bottom {
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+    button {
+      cursor: pointer;
+      display: block;
+      border: 0;
+      width: 100%;
+      height: 48px;
+      background-color: #fff; // #1890ff
+      font-weight: 500;
+      border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    }
+    button:hover {
+      background-color: #dfdfdf;
+    }
+    button:active {
+      background-color: #fff;
+    }
+  }
+`;

@@ -88,6 +88,10 @@ export const UPLOAD_USER_PROFILE_IMAGES_FAILURE = 'UPLOAD_USER_PROFILE_IMAGES_FA
 // 이미지 제거, REMOVE_IMAGE
 export const REMOVE_IMAGE = 'REMOVE_IMAGE';
 export const REMOVE_ALL_IMAGE = 'REMOVE_ALL_IMAGE';
+// 게시글 삭제
+export const REMOVE_POST_REQUEST = 'REMOVE_POST_REQUEST';
+export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
+export const REMOVE_POST_FAILURE = 'REMOVE_POST_FAILURE';
 
 // reducer
 const reducer = (state = initialState, action) =>
@@ -127,6 +131,22 @@ const reducer = (state = initialState, action) =>
         break;
       case ADD_POST_STATE_RESET:
         draft.addPostDone = false;
+      //* 게시글 삭제
+      case REMOVE_POST_REQUEST:
+        draft.removePostLoading = true;
+        draft.removePostDone = false;
+        draft.removePostError = null;
+        break;
+      case REMOVE_POST_SUCCESS:
+        // 지우려는 것만 지우고 나머진 남겨둔다
+        draft.removePostLoading = false;
+        draft.removePostDone = true;
+        draft.mainPosts = draft.mainPosts.filter((v) => v.id !== action.data.PostId);
+        break;
+      case REMOVE_POST_FAILURE:
+        draft.removePostLoading = false;
+        draft.removePostError = action.error;
+        break;
       //* 이미지 업로드
       case UPLOAD_IMAGES_REQUEST:
         draft.uploadImagesLoading = true;

@@ -64,6 +64,8 @@ export const USER_PROFILE_CHANGE_FAILURE = 'USER_PROFILE_CHANGE_FAILURE';
 export const USER_INFO_CHANGE_REQUEST = 'USER_INFO_CHANGE_REQUEST'; // userInfo in model
 export const USER_INFO_CHANGE_SUCCESS = 'USER_INFO_CHANGE_SUCCESS';
 export const USER_INFO_CHANGE_FAILURE = 'USER_INFO_CHANGE_FAILURE';
+// 유저 정보 state reset
+export const USER_INFO_UPDATE_STATE_RESET = 'USER_INFO_UPDATE_STATE_RESET';
 
 // reducer
 const reducer = (state = initialState, action) =>
@@ -183,6 +185,10 @@ const reducer = (state = initialState, action) =>
       case USER_INFO_CHANGE_FAILURE:
         draft.userInfoChangeLoading = false;
         draft.userInfoChangeError = action.error;
+        break;
+      case USER_INFO_UPDATE_STATE_RESET:
+        draft.userInfoChangeLoading = false;
+        draft.userInfoChangeDone = false;
         break;
       default:
         break;

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 // antd, CSS
-import { Avatar } from 'antd';
+import { Avatar, Image } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { AddPostWrapper } from '../style/NavMenu/AddPost';
 // custom hooks
@@ -28,8 +28,8 @@ const AddPost = ({ setAddPostToggle }) => {
   // react-slick
   const settings = {
     dots: true,
-    infinite: true,
-    speed: 500,
+    infinite: false,
+    speed: 10,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -188,6 +188,7 @@ const AddPost = ({ setAddPostToggle }) => {
                 {imagePaths.map((image, idx) => {
                   return (
                     <div id="add-img-box-wrapper">
+                      {/* <Image width={790} src={`${backURL}/${image}`} alt={image} key={image} /> */}
                       <img src={`${backURL}/${image}`} alt={image} key={image} />
                     </div>
                   );
@@ -197,6 +198,7 @@ const AddPost = ({ setAddPostToggle }) => {
               imagePaths.map((image, idx) => {
                 return (
                   <div id="add-img-box-wrapper">
+                    {/* <Image width={790} height={840} src={`${backURL}/${image}`} alt={image} key={image} /> */}
                     <img src={`${backURL}/${image}`} alt={image} key={image} />
                   </div>
                 );

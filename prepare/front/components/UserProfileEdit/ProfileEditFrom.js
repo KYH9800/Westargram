@@ -8,20 +8,25 @@ import { UserOutlined } from '@ant-design/icons';
 // components
 import useInput from '../../hooks/useInput';
 // redux
-import { USER_PROFILE_CHANGE_REQUEST, USER_INFO_CHANGE_REQUEST } from '../../reducers/user';
+import {
+  USER_PROFILE_CHANGE_REQUEST,
+  USER_INFO_CHANGE_REQUEST,
+  USER_INFO_UPDATE_STATE_RESET,
+} from '../../reducers/user';
 
 const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const userProfileImageInput = useRef();
+  // useSelector
+  const { userInfoChangeError } = useSelector((state) => state.user);
   // useInput
-  const [name, onChangeName] = useInput(''); // 이름
-  const [userIdName, onChangeUserIdName] = useInput(''); // 사용자 이름
-  const [webSite, onChangeWebSite] = useInput(''); // 웹 사이트
-  const [introduce, onChangeIntroduce] = useInput(''); // 소개
-  const [userEmail, onChangeUserEmail] = useInput(''); // 사용자 이메일
-  const [phoneNum, onChangePhoneNum] = useInput(''); // 전화번호
-  //* props로 받아온 state, user sex, dispatch 시 보낼 것에 포함
+  const [name, onChangeName] = useInput(me?.name || ``); // 이름
+  const [userIdName, onChangeUserIdName] = useInput(me?.userIdName || ``); // 사용자 이름
+  const [webSite, onChangeWebSite] = useInput(me?.UserInfo?.webSite || ``); // 웹 사이트
+  const [introduce, onChangeIntroduce] = useInput(me?.UserInfo?.introduce || ``); // 소개
+  const [userEmail, onChangeUserEmail] = useInput(me?.UserInfo?.userEmail || ``); // 사용자 이메일
+  const [phoneNum, onChangePhoneNum] = useInput(me?.UserInfo?.phoneNum || ``); // 전화번호
 
   useEffect(() => {
     if (!me) {
@@ -66,6 +71,12 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
           sex: sex,
         },
       });
+      dispatch({
+        type: USER_INFO_UPDATE_STATE_RESET,
+      });
+      if (!userInfoChangeError) {
+        alert('회원님의 정보가 수정되었습니다.');
+      }
     },
     [name, userIdName, webSite, introduce, userEmail, phoneNum, sex]
   );
@@ -82,7 +93,7 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
             )}
           </div>
           <div className="user-profile-id-name">
-            <div id="userIdName">{me.userIdName}</div>
+            <div id="userIdName">{me?.userIdName}</div>
             <input
               type="file"
               name="userProfileImage"
@@ -98,7 +109,7 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
           <div className="change-name">
             <label id="profile-input-title">이름</label>
             <div id="user-info-input-wrapper">
-              <input type="text" placeholder={me.name} value={name} onChange={onChangeName} required />
+              <input type="text" placeholder="이름" value={name} onChange={onChangeName} required />
               <p>
                 사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록
                 도와주세요.
@@ -108,26 +119,14 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
           <div className="change-userId-name">
             <label id="profile-input-title">사용자 이름</label>
             <div id="user-info-input-wrapper">
-              <input
-                type="text"
-                placeholder={me.userIdName}
-                value={userIdName}
-                onChange={onChangeUserIdName}
-                required
-              />
+              <input type="text" placeholder="사용자 이름" value={userIdName} onChange={onChangeUserIdName} required />
               <p>사용자 이름을 변경할 수 있습니다.</p>
             </div>
           </div>
           <div className="website-info">
             <label id="profile-input-title">웹 사이트</label>
             <div id="user-info-input-wrapper">
-              <input
-                type="text"
-                placeholder={me?.UserInfo.webSite}
-                value={webSite}
-                onChange={onChangeWebSite}
-                required
-              />
+              <input type="text" placeholder="웹 사이트" value={webSite} onChange={onChangeWebSite} required />
             </div>
           </div>
           <div className="user-intro">
@@ -135,7 +134,7 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
             <div id="user-info-input-wrapper">
               <textarea
                 type="text"
-                placeholder={me?.UserInfo.introduce}
+                placeholder={me?.UserInfo?.introduce}
                 value={introduce}
                 onChange={onChangeIntroduce}
                 required
@@ -150,25 +149,13 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
           <div className="user-email">
             <label id="profile-input-title">이메일</label>
             <div id="user-info-input-wrapper">
-              <input
-                type="email"
-                placeholder={me?.UserInfo.userEmail}
-                value={userEmail}
-                onChange={onChangeUserEmail}
-                required
-              />
+              <input type="email" placeholder="이메일" value={userEmail} onChange={onChangeUserEmail} required />
             </div>
           </div>
           <div className="user-phone-num">
             <label id="profile-input-title">전화번호</label>
             <div id="user-info-input-wrapper">
-              <input
-                type="text"
-                placeholder={me?.UserInfo.phoneNum}
-                value={phoneNum}
-                onChange={onChangePhoneNum}
-                required
-              />
+              <input type="text" placeholder="전화번호" value={phoneNum} onChange={onChangePhoneNum} required />
             </div>
           </div>
           <div className="user-sex">
@@ -177,7 +164,8 @@ const ProfileEditFrom = ({ me, sex, setOnSexToggle }) => {
               <input
                 id="user-sex-input"
                 type="text"
-                value={me?.UserInfo.sex}
+                placeholder="성별"
+                value={sex}
                 onClick={onClickToggle}
                 readOnly
                 required

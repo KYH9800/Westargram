@@ -11,6 +11,9 @@ import {
   UPLOAD_IMAGES_REQUEST,
   UPLOAD_IMAGES_SUCCESS,
   UPLOAD_IMAGES_FAILURE,
+  REMOVE_POST_REQUEST,
+  REMOVE_POST_SUCCESS,
+  REMOVE_POST_FAILURE,
   generateDummyPost, // dummy
 } from '../reducers/post';
 
@@ -77,9 +80,35 @@ function* uploadImages(action) {
   }
 }
 
+//* REMOVE_POST
+function removePostAPI(data) {
+  return axios.delete(`/post/${data}`); // data: post.id
+} // post/post.id
+
+function* removePost(action) {
+  try {
+    const result = yield call(removePostAPI, action.data);
+    yield put({
+      type: REMOVE_POST_SUCCESS,
+      data: result.data,
+    });
+    // yield put({
+    //   type: REMOVE_POST_OF_ME, // 본인의 POST에 삭제
+    //   data: action.data,
+    // });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: REMOVE_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchLoadPosts() {
   yield takeLatest(LOAD_POSTS_REQUEST, loadPosts); // n초 동안은 한번만 요청이 간다 (throttle)
 }
+
 function* watchAddPost() {
   yield takeLatest(ADD_POST_REQUEST, addPost);
 }
@@ -88,6 +117,10 @@ function* watchUploadImages() {
   yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages);
 }
 
+function* watchRemovePost() {
+  yield takeLatest(REMOVE_POST_REQUEST, removePost);
+}
+
 export default function* postSaga() {
-  yield all([fork(watchLoadPosts), fork(watchAddPost), fork(watchUploadImages)]);
+  yield all([fork(watchLoadPosts), fork(watchAddPost), fork(watchUploadImages), fork(watchRemovePost)]);
 }

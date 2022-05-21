@@ -56,6 +56,10 @@ export const initialState = {
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
+  // 게시글 수정
+  updatePostLoading: false,
+  updatePostDone: false,
+  updatePostError: null,
   // 이미지 업로드
   uploadImagesLoading: false,
   uploadImagesDone: false,
@@ -75,6 +79,10 @@ export const LOAD_POSTS_FAILURE = 'LOAD_POSTS_FAILURE';
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
+// 게시글 수정
+export const UPDATE_POST_REQUEST = 'UPDATE_POST_REQUEST';
+export const UPDATE_POST_SUCCESS = 'UPDATE_POST_SUCCESS';
+export const UPDATE_POST_FAILURE = 'UPDATE_POST_FAILURE';
 // 상태 리셋
 export const ADD_POST_STATE_RESET = 'ADD_POST_STATE_RESET';
 // 이미지 업로드, UPLOAD_IMAGES
@@ -131,6 +139,21 @@ const reducer = (state = initialState, action) =>
         break;
       case ADD_POST_STATE_RESET:
         draft.addPostDone = false;
+      //* 게시글 수정
+      case UPDATE_POST_REQUEST:
+        draft.updatePostLoading = true;
+        draft.updatePostDone = false;
+        draft.updatePostError = null;
+        break;
+      case UPDATE_POST_SUCCESS:
+        draft.updatePostLoading = false;
+        draft.updatePostDone = true;
+        draft.mainPosts.find((v) => v.id === action.data.PostId).content = action.data.content;
+        break;
+      case UPDATE_POST_FAILURE:
+        draft.updatePostLoading = false;
+        draft.updatePostError = action.error;
+        break;
       //* 게시글 삭제
       case REMOVE_POST_REQUEST:
         draft.removePostLoading = true;

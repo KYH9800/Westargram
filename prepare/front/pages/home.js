@@ -6,7 +6,7 @@ import axios from 'axios';
 import { END } from 'redux-saga';
 import wrapper from '../store/configureStore';
 // CSS
-import { MainWrapper } from '../style/index';
+import { MainWrapper } from '../style/home';
 // components
 import Layout from '../components/Layout';
 import ShortsForm from '../components/ShortsForm';
@@ -66,7 +66,7 @@ const Home = () => {
             </section>
             <div id="user-info-wrapper">
               <div className="user-info">
-                <UserInfo />
+                <UserInfo me={me} />
               </div>
             </div>
           </div>

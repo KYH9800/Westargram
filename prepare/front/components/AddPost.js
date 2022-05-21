@@ -21,7 +21,7 @@ import {
 const AddPost = ({ setAddPostToggle }) => {
   const dispatch = useDispatch();
   const imageInput = useRef(); // 실제 DOM에 접근
-  const [text, onChangeText, setText] = useInput('');
+  const [content, onChangeContent, setText] = useInput('');
   const { imagePaths, addPostDone } = useSelector((state) => state.post);
   console.log('imagePaths:', imagePaths.length);
 
@@ -101,7 +101,7 @@ const AddPost = ({ setAddPostToggle }) => {
         imagePaths.forEach((p) => {
           formData.append('image', p);
         });
-        formData.append('content', text);
+        formData.append('content', content);
         // dispatch, new FormData()에 합친 이미지와 contents를 ADD_POST_REQUEST 요청한다.
         return dispatch({
           type: ADD_POST_REQUEST,
@@ -109,7 +109,7 @@ const AddPost = ({ setAddPostToggle }) => {
         });
       }
     },
-    [text, imagePaths]
+    [content, imagePaths]
   );
 
   return (
@@ -210,8 +210,13 @@ const AddPost = ({ setAddPostToggle }) => {
               <Avatar id="avatar" src={<img className="user-img" src="/images/self.png" />} size={28} />
               <span className="user-id">kyh0506</span>
             </div>
-            <textarea className="addPost-textarea" value={text} onChange={onChangeText} placeholder="문구 입력..." />
-            <div className="limit-text-info">{text.length}/2,200</div>
+            <textarea
+              className="addPost-textarea"
+              value={content}
+              onChange={onChangeContent}
+              placeholder="문구 입력..."
+            />
+            <div className="limit-text-info">{content.length}/2,200</div>
             <div id="addPost-img-list">
               <h2>이미지 목록</h2>
               <div id="img-list-box">

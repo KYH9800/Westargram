@@ -36,7 +36,7 @@ export const UserInfoWrapper = styled.div`
   #my-id-name .my-name {
     color: #8e8e8e;
     font-weight: 400;
-    width: 174.23px;
+    width: 155.23px;
   }
 
   // change-id-btn

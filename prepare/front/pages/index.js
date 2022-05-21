@@ -6,7 +6,7 @@ import axios from 'axios';
 import { END } from 'redux-saga';
 import wrapper from '../store/configureStore';
 // CSS
-import { GlobalStyle, LoginWrapper } from '../style/login';
+import { GlobalStyle, LoginWrapper } from '../style/index';
 // redux
 import { RESET_SIGN_UP_STATES, LOG_IN_REQUEST, LOAD_MY_INFO_REQUEST } from '../reducers/user';
 // custom hooks

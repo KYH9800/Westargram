@@ -1,32 +1,50 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 // CSS
 import { UserInfoWrapper } from '../style/UserInfo';
 // antd
-import { Avatar } from 'antd'; // import { UserOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 // components
 import UserRecommendationList from '../components/UserRecommendationList';
+// reducer
+import { LOG_OUT_REQUEST } from '../reducers/user';
 
-const UserInfo = () => {
+// props: me in home.js
+const UserInfo = ({ me }) => {
+  const dispatch = useDispatch();
+
+  // 로그아웃
+  const onClickLogout = useCallback(() => {
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
+  }, []);
+
   return (
     <UserInfoWrapper>
       <div id="my-info-wrapper">
         <div id="my-avatar">
           <a>
-            <Avatar size={56} icon={<img className="my-img" src="/images/self.png" />} />
+            {me?.UserProfileImage ? (
+              <Avatar size={56} icon={<img className="my-img" src={me.UserProfileImage[0]} />} />
+            ) : (
+              <Avatar size={56} icon={<UserOutlined />} />
+            )}
           </a>
         </div>
         <div id="my-id-name">
           <div className="my-id">
             <a>
-              <span>kyh_0506</span>
+              <span>{me?.userIdName}</span>
             </a>
           </div>
           <div className="my-name">
-            <p>고윤혁</p>
+            <p>{me?.name}</p>
           </div>
         </div>
         <button id="change-id">
-          <a>전환</a>
+          <a onClick={onClickLogout}>로그아웃</a>
         </button>
       </div>
 

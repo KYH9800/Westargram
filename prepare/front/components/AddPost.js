@@ -92,7 +92,7 @@ const AddPost = ({ setAddPostToggle }) => {
       if (imagePaths.length === 0) {
         return alert('이미지를 추가하세요');
       }
-      if (!text || !text.trim()) {
+      if (!content || !content.trim()) {
         return alert('게시글을 작성하세요');
       }
       if (confirm('작성한 게시글을 업로드 하시겠습니까?')) {

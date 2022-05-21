@@ -5,7 +5,7 @@ export const ActivityWrapper = styled.div`
   #activity-box-point {
     position: absolute;
     top: 36px;
-    right: 50px;
+    right: 52px;
     width: 14px;
     height: 14px;
     background-color: #fff;

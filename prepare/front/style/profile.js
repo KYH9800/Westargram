@@ -218,16 +218,14 @@ export const ProfileWrapper = styled.div`
 
 // option 아이콘, madal 창
 export const SettingModal = styled.div`
-  #setting-modal-wrapper {
-    z-index: 100;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
-    border: rgba(var(--jb7, 0, 0, 0), 0.0975);
-    background-color: #000000d9;
-  }
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  border: rgba(var(--jb7, 0, 0, 0), 0.0975);
+  background-color: #000000d9;
 
   #modal-box {
     position: absolute;
@@ -241,14 +239,19 @@ export const SettingModal = styled.div`
     align-items: center;
   }
 
-  #setting-modal-wrapper .list-btn-top {
+  .change-profile-img {
+    text-align: center;
+    margin: 15px 0;
+  }
+
+  .list-btn-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 
-  #setting-modal-wrapper .list-btn-top,
-  #setting-modal-wrapper .list-btn,
-  #setting-modal-wrapper .list-btn-bottom {
+  .list-btn-top,
+  .list-btn,
+  .list-btn-bottom {
     cursor: pointer;
     border-top: 1px solid #dbdbdb;
     text-align: center;

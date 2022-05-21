@@ -115,8 +115,8 @@ export const Wrapper = styled.div`
     height: 24px;
   }
 
-  #icon-button svg {
-    margin: 0 12px;
+  #icon-button > a > span {
+    margin-left: 24px;
   }
 
   // img copy 방지
@@ -157,6 +157,9 @@ export const Wrapper = styled.div`
     padding-bottom: 11px;
     width: 230px;
     vertical-align: middle;
+    svg {
+      margin: 0 12px;
+    }
   }
   #user-list .list-item:hover {
     background-color: #f2f2f2;

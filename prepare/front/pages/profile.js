@@ -8,8 +8,8 @@ import { END } from 'redux-saga';
 import wrapper from '../store/configureStore';
 // CSS
 import { ProfileWrapper, SettingModal } from '../style/profile';
-// antd
 import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 // component
 import Layout from '../components/Layout';
 import ProfileNav from '../components/ProfileNav/ProfileNav';
@@ -22,6 +22,7 @@ const Profile = () => {
   const { me } = useSelector((state) => state.user);
   // useState
   const [onSettingModal, setOnSettingModal] = useState(false);
+  const [userProfileImageModal, setUserProfileImageModal] = useState(false);
 
   // useEffect
   useEffect(() => {
@@ -48,6 +49,11 @@ const Profile = () => {
     });
   }, []);
 
+  // 유저 이미지 변경
+  const onClickUserImage = () => {
+    setUserProfileImageModal((prevState) => !prevState);
+  };
+
   return (
     <>
       <Layout>
@@ -55,8 +61,12 @@ const Profile = () => {
           <div id="header-nav-wrapper">
             <div id="profile-header">
               <div className="profile-line">
-                <div id="profile-img">
-                  <Avatar id="avatar" src={<img className="user-img" src="/images/self.png" />} />
+                <div id="profile-img" onClick={onClickUserImage}>
+                  {me?.UserProfileImage ? (
+                    <Avatar size={150} icon={<img className="user-img" src={me.UserProfileImage[0]} />} />
+                  ) : (
+                    <Avatar className="user-img" size={150} icon={<UserOutlined />} />
+                  )}
                 </div>
 
                 <div id="profile-user-info">
@@ -136,19 +146,34 @@ const Profile = () => {
       </Layout>
       {onSettingModal ? (
         <SettingModal>
-          <div id="setting-modal-wrapper">
-            <div id="modal-box">
-              <Link href="/userProfileEdit">
-                <div className="list-btn-top">
-                  <a>프로필 편집</a>
-                </div>
-              </Link>
-              <div className="list-btn" onClick={onClickLogout}>
-                로그아웃
+          <div id="modal-box">
+            <Link href="/userProfileEdit">
+              <div className="list-btn-top">
+                <a>프로필 편집</a>
               </div>
-              <div className="list-btn-bottom" onClick={onClickSettingToggle}>
-                취소
-              </div>
+            </Link>
+            <div className="list-btn" onClick={onClickLogout}>
+              로그아웃
+            </div>
+            <div className="list-btn-bottom" onClick={onClickSettingToggle}>
+              취소
+            </div>
+          </div>
+        </SettingModal>
+      ) : null}
+
+      {userProfileImageModal ? (
+        <SettingModal>
+          <div id="modal-box">
+            <h2 className="change-profile-img">프로필 사진 바꾸기</h2>
+            <div className="list-btn-top">
+              <a style={{ color: '#0095f6', fontWeight: '700' }}>사진 업로드</a>
+            </div>
+            <div className="list-btn" style={{ color: '#ed4956', fontWeight: '700' }}>
+              현재 사진 삭제
+            </div>
+            <div className="list-btn-bottom" onClick={onClickUserImage}>
+              취소
             </div>
           </div>
         </SettingModal>

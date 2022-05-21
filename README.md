@@ -12,5 +12,12 @@
 ![image](https://user-images.githubusercontent.com/61128538/169640494-ce6c1806-9b90-4578-a514-627d2d90c45f.png)
 ![image](https://user-images.githubusercontent.com/61128538/169640510-9e4abeb5-c974-4002-8d96-ef59670dd340.png)
 ![image](https://user-images.githubusercontent.com/61128538/169640527-d3c947f3-6563-49dc-bf91-7f2654b6bda3.png)
+![image](https://user-images.githubusercontent.com/61128538/169640645-65f1ff23-7399-464a-9e47-2f2f92fa03da.png)
+
+#### 4. 프로필 수정(편집)
+![image](https://user-images.githubusercontent.com/61128538/169640670-69f5bb46-b73e-4d62-bdf0-7854490ac678.png)
+
+#### 5. 게시글 수정 및 삭제
+![image](https://user-images.githubusercontent.com/61128538/169640695-e9ff1cfe-eac2-49fc-9cf5-4740a74ddfa6.png)
 
 

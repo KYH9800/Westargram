@@ -90,7 +90,7 @@ export const AddPostWrapper = styled.div`
 
   #add-img-box-wrapper {
     width: 829px;
-    height: 790px; // 839
+    height: 755px; // 839
     vertical-align: middle;
     img {
       margin: auto;
@@ -146,7 +146,7 @@ export const AddPostWrapper = styled.div`
   }
 
   #img-list-box {
-    height: 513px;
+    height: 430px;
     overflow-x: hidden;
     overflow-y: auto;
   }

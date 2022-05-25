@@ -68,7 +68,7 @@ export const UpdatePostEditorForm = styled.form`
 
   #add-img-box-wrapper {
     width: 100%;
-    height: 839px; // 839
+    height: 755px; // 839
     /* height: 100%; */
     img {
       margin: auto;
